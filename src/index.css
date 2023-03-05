@@ -7,6 +7,8 @@
 html {
   background-color: #010208;
   scroll-behavior: smooth;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .headTextgradient {

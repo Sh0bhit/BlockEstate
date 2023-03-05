@@ -18,14 +18,14 @@ export default function Navbar() {
             BlockEstate
           </h1>
         </div>
-        <ul className="nav-buttons list-none sm:flex hidden text-primary justify-end items-center flex-1 pr-16">
+        <ul className="nav-buttons list-none sm:flex hidden text-primary justify-end items-center flex-1 pr-16 ">
           {navLinks.map((nav, index) => {
             return (
               <li
                 key={nav.id}
                 className={`font-poppins ${
                   index === navLinks.length - 1 ? "mr-0" : "mr-10"
-                } cursor-pointer font-normal text-[16px]`}
+                } cursor-pointer font-normal text-[16px] `}
               >
                 <a href={`#${nav.id}`}>{nav.title}</a>
               </li>
