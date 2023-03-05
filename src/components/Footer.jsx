@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <section className="footer" id="footer">
       <motion.div
-        initial={{ opacity: 0, translateY: "100%" }}
+        initial={{ opacity: 0, translateY: "50%" }}
         whileInView={{ opacity: 1, translateY: "0%" }}
         transition={{
           delay: 0.1,

@@ -1,8 +1,9 @@
 import React from "react";
-import { navLinks } from "../constants/constants";
-import { useState } from "react";
 
-export default function Navbar() {
+import { useState } from "react";
+import { Link } from "react-router-dom";
+
+export default function Navbar(props) {
   const [toggle, setToggle] = useState(false);
   return (
     <div>
@@ -19,15 +20,21 @@ export default function Navbar() {
           </h1>
         </div>
         <ul className="nav-buttons list-none sm:flex hidden text-primary justify-end items-center flex-1 pr-16 ">
-          {navLinks.map((nav, index) => {
+          {props.link.map((nav, index) => {
             return (
               <li
                 key={nav.id}
                 className={`font-poppins ${
-                  index === navLinks.length - 1 ? "mr-0" : "mr-10"
+                  index === props.link.length - 1 ? "mr-0" : "mr-10"
                 } cursor-pointer font-normal text-[16px] `}
               >
-                <a href={`#${nav.id}`}>{nav.title}</a>
+                {nav.id === "about" ? (
+                  <Link to={`${nav.id}`}>{nav.title}</Link>
+                ) : props.page === "home" ? (
+                  <a href={`#${nav.id}`}>{nav.title}</a>
+                ) : (
+                  <Link to={`${nav.id}`}>{nav.title}</Link>
+                )}
               </li>
             );
           })}
@@ -50,15 +57,21 @@ export default function Navbar() {
             } p-6 absolute top-20 my-2 min-w-[140px] w-full bg-bgColor sidebar`}
           >
             <ul className="nav-buttons list-none flex flex-col text-primary justify-end items-center flex-1">
-              {navLinks.map((nav, index) => {
+              {props.link.map((nav, index) => {
                 return (
                   <li
                     key={nav.id}
                     className={`font-poppins ${
-                      index === navLinks.length - 1 ? "mb-0" : "mb-4"
+                      index === props.link.length - 1 ? "mb-0" : "mb-4"
                     } cursor-pointer font-normal text-[16px]`}
                   >
-                    <a href={`#${nav.id}`}>{nav.title}</a>
+                    {nav.id === "about" ? (
+                      <Link to={`${nav.id}`}>{nav.title}</Link>
+                    ) : props.page === "home" ? (
+                      <a href={`#${nav.id}`}>{nav.title}</a>
+                    ) : (
+                      <Link to={`${nav.id}`}>{nav.title}</Link>
+                    )}
                   </li>
                 );
               })}

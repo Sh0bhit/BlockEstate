@@ -1,22 +1,14 @@
-import {
-  Navbar,
-  Hero,
-  Aim,
-  Features,
-  Contact,
-  Need,
-  Footer,
-} from "./components/export";
+import { Route, Routes } from "react-router-dom";
+import { Navbar, Footer, Progress } from "./components/export";
+import { Home, About } from "./pages/export";
 
 function App() {
   return (
     <div>
-      <Navbar />
-      <Hero />
-      <Aim />
-      <Features />
-      <Need />
-      <Contact />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
       <Footer />
     </div>
   );
