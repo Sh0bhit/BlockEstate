@@ -23,7 +23,7 @@ export const navAboutLinks = [
   },
 
   {
-    id: "explore",
+    id: "/explore",
     title: "Explore",
   },
 ];
