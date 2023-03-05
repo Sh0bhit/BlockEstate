@@ -1,10 +1,19 @@
 import React from "react";
 import { socials } from "../constants/constants";
+import { motion } from "framer-motion";
 
 export default function Footer() {
   return (
     <section className="footer" id="footer">
-      <div className="bg-footerBg flex ss:px-20 px-5 py-5">
+      <motion.div
+        initial={{ opacity: 0, translateY: "100%" }}
+        whileInView={{ opacity: 1, translateY: "0%" }}
+        transition={{
+          delay: 0.1,
+          duration: 0.5,
+        }}
+        className="bg-footerBg flex ss:px-20 px-5 py-5"
+      >
         <div className="footer-logo flex flex-col gap-3 w-full">
           <img
             src="/images/logo/BlockEstateLogo.png"
@@ -41,7 +50,7 @@ export default function Footer() {
             rights reserved.
           </h1>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
