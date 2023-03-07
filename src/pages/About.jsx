@@ -7,7 +7,7 @@ export default function About() {
   return (
     <div>
       <Navbar link={navAboutLinks} page="about" />
-      <section className="about sm:mt-28 mt-10 sm:py-20 py-8">
+      <section className="about mt-28 sm:py-20 py-8">
         <motion.h1
           initial={{ opacity: 0, translateY: "50%" }}
           whileInView={{ opacity: 1, translateY: "0%" }}
@@ -21,7 +21,7 @@ export default function About() {
         >
           About this <span className="headTextgradient">project</span>
         </motion.h1>
-        <div className="flex w-[80%] mx-auto mt-24 items-center">
+        <div className="flex sm:flex-row flex-col-reverse w-[80%] mx-auto mt-24 items-center gap-10">
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -32,7 +32,7 @@ export default function About() {
               damping: 10,
               stiffness: 50,
             }}
-            className="text-primary font-poppins w-[50%] mx-auto text-[18px] leading-8"
+            className="text-primary font-poppins basis-[80%] mx-auto md:text-[15px] text-[13px] leading-5 w-full"
           >
             <motion.span
               initial={{ opacity: 0, translateY: "50%" }}
@@ -49,10 +49,20 @@ export default function About() {
             </motion.span>
             {aboutContent[0]["content"]}
           </motion.p>
-          <img
+
+          <motion.img
+            initial={{ opacity: 0, filter: "blur(30px)" }}
+            whileInView={{ opacity: 1, filter: "blur(0px)" }}
+            transition={{
+              delay: 0.5,
+              duration: 0.5,
+              type: "spring",
+              damping: 10,
+              stiffness: 50,
+            }}
             src="/images/about/about1.png"
             alt="about1"
-            className="object-contain w-[500px] features-gradient p-5"
+            className="object-cover md:w-[400px] w-[300px] md:h-[400px] h-[300px] features-gradient p-5"
           />
         </div>
       </section>
