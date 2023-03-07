@@ -70,6 +70,7 @@ export default function Contact() {
                     type={`${form.type}`}
                     placeholder={`${form.placeholder}`}
                     className="block py-3 px-5 bg-input rounded-md w-full  focus:white"
+                    required
                   />
                   <br />
                 </div>
@@ -81,6 +82,7 @@ export default function Contact() {
               type="textarea"
               placeholder="Leave a comment"
               className="block py-3 px-5 bg-input rounded-md w-full"
+              required
             />
             <br />
 

@@ -7,7 +7,7 @@ export function Hero() {
     <div>
       <section
         id="home"
-        className="hero md:flex-row flex-col sm:py-16 py-6 bg-bgColor w-full sm:mt-6 mt-10"
+        className="hero md:flex-row flex-col sm:py-16 py-6 bg-bgColor w-full sm:mt-16 mt-10"
       >
         <div className="flex sm:flex-row flex-col">
           {" "}

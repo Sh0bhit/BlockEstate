@@ -82,3 +82,11 @@ export const socials = [
   { name: "mail", link: "/images/socials/mail.svg" },
   { name: "telegram", link: "/images/socials/telegram.svg" },
 ];
+
+export const aboutContent = [
+  {
+    id: "A1",
+    content:
+      "is a college minor project that aims to tackle the challenges associated with traditional real estate transactions by utilizing blockchain technology. The platform offers a decentralized approach to buying and selling property, ensuring secure and transparent transactions. With BlockEstate, buyers and sellers can enjoy a streamlined process that eliminates the need for intermediaries, making real estate transactions more efficient and cost-effective. The platform is designed to foster trust and ease by providing a decentralized, secure, and transparent real estate ecosystem for all parties involved. By combining the power of blockchain and real estate, BlockEstate is poised to revolutionize the way real estate transactions are conducted, providing a seamless and reliable solution to the industry's long-standing problems.",
+  },
+];

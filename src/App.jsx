@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 // import { Navbar, Footer, Progress } from "./components/export";
-import Footer from "./components/Footer";
-import { Home, About } from "./pages/export";
+import { Footer } from "./components/";
+import { Home, About } from "./pages/";
 
 function App() {
   return (

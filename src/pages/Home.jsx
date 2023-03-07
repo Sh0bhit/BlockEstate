@@ -1,11 +1,4 @@
-import {
-  Navbar,
-  Hero,
-  Aim,
-  Features,
-  Contact,
-  Need,
-} from "../components/export";
+import { Navbar, Hero, Aim, Features, Contact, Need } from "../components";
 import { navHomeLinks } from "../constants/constants";
 
 export default function Home() {
