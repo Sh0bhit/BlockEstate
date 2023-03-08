@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Stack, AboutDesc } from "../components";
+import { Navbar, Stack, AboutDesc, Timeline, Conclusion } from "../components";
 import { navAboutLinks } from "../constants/constants";
 import { motion } from "framer-motion";
 
@@ -23,6 +23,8 @@ export default function About() {
         </motion.h1>
         <AboutDesc />
         <Stack />
+        <Timeline />
+        <Conclusion />
       </section>
     </div>
   );

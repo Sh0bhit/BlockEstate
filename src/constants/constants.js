@@ -89,6 +89,7 @@ export const aboutContent = [
     content:
       "is a college minor project that aims to tackle the challenges associated with traditional real estate transactions by utilizing blockchain technology. The platform offers a decentralized approach to buying and selling property, ensuring secure and transparent transactions. With BlockEstate, buyers and sellers can enjoy a streamlined process that eliminates the need for intermediaries, making real estate transactions more efficient and cost-effective. The platform is designed to foster trust and ease by providing a decentralized, secure, and transparent real estate ecosystem for all parties involved. By combining the power of blockchain and real estate, BlockEstate is poised to revolutionize the way real estate transactions are conducted, providing a seamless and reliable solution to the industry's long-standing problems.",
   },
+  { id: "conclusion", content: "" },
 ];
 
 export const techStack = [
@@ -97,4 +98,27 @@ export const techStack = [
   { name: "ReactJs", image: "/images/techStack/reactjs.svg", delay: "0.3" },
   { name: "Solidity", image: "/images/techStack/Solidity.svg", delay: "0.4" },
   { name: "Tailwind", image: "/images/techStack/tailwind.svg", delay: "0.5" },
+];
+
+export const TimelineData = [
+  {
+    date: "February 26th 2023",
+    heading: "BlockEstate Theme Design",
+    desc: "Started Researching about real estate website design trends and blockchain technology Gathered inspiration from other blockchain-based platforms Created a list of features to include in the website, such as property listings, smart contracts, and payment options Started sketching out wireframes for the website's pages",
+  },
+  {
+    date: "February 28th 2023",
+    heading: "BlockEstate Logo",
+    desc: "Started working on BlockEstate's visual identity, brainstorming logo designs and exploring color schemes and typography options. We used AI-generated tools to refine and finalize the logo design and created a brand guide for consistency across all visual elements. Finally, we presented the final logo and brand identity",
+  },
+  {
+    date: "March 4th 2023",
+    heading: "BlockEstate Landing Page Design",
+    desc: "completed the landing page design for BlockEstate website. We are now planning to add gradients and animations to the page to enhance the user experience. We are all thrilled to see the final result and can't wait to share it with everyone. To create an outstanding website, we are utilizing the latest technology, including ReactJS.",
+  },
+  {
+    date: "March 6th 2023",
+    heading: "BlockEstate Landing Page Animations",
+    desc: "finished creating stunning animations and gradients for the BlockEstate landing page. We also incorporated the latest technologies such as FramerMotion to provide users with an outstanding experience.",
+  },
 ];

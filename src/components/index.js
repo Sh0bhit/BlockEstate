@@ -8,6 +8,8 @@ import Footer from "./Footer";
 import Progress from "./Progress";
 import Stack from "./Stack";
 import AboutDesc from "./AboutDesc";
+import Timeline from "./Timeline";
+import Conclusion from "./Conclusion";
 
 export {
   Navbar,
@@ -20,4 +22,6 @@ export {
   Progress,
   Stack,
   AboutDesc,
+  Timeline,
+  Conclusion,
 };

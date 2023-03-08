@@ -14,7 +14,7 @@ export default function AboutDesc() {
           type: "spring",
           stiffness: 40,
         }}
-        className="text-primary font-poppins mx-auto md:text-[15px] ss:text-[13px] text-[11px] ss:leading-5 leading-4 w-full"
+        className="text-primary font-poppins mx-auto md:text-[16px] ss:text-[13px] text-[11px] ss:leading-6 leading-4 w-full"
       >
         <motion.span
           initial={{ opacity: 0, translateY: "50%" }}
@@ -25,9 +25,9 @@ export default function AboutDesc() {
             type: "spring",
             stiffness: 40,
           }}
-          className="headTextgradient text-[40px] font-bold"
+          className="headTextgradient ss:text-[40px] text-[35px] font-bold"
         >
-          BlockEstate{" "}
+          BlockEstate
         </motion.span>
         {aboutContent[0]["content"]}
       </motion.p>

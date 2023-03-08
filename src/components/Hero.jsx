@@ -1,6 +1,7 @@
 import React from "react";
 import HeroStats from "./HeroStats";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 export function Hero() {
   return (
@@ -45,10 +46,13 @@ export function Hero() {
               <button className="get-btn text-primary btn-gradient py-[10px] px-[20px] font-poppins">
                 Get Started
               </button>
-              <div className="btn-gradient">
-                <button className="explore-btn text-primary py-[10px] px-[20px] m-[2px] bg-bgColor font-poppins">
-                  Explore now
-                </button>
+              <div className="btn-gradient items-center flex">
+                <Link
+                  className="explore-btn text-primary py-[10px] px-[20px] m-[2px] bg-bgColor font-poppins"
+                  to="about"
+                >
+                  Know More
+                </Link>
               </div>
             </div>
             <HeroStats />
