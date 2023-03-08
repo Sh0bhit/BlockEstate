@@ -27,7 +27,7 @@ export default function AboutDesc() {
           }}
           className="headTextgradient ss:text-[40px] text-[35px] font-bold"
         >
-          BlockEstate
+          BlockEstate{" "}
         </motion.span>
         {aboutContent[0]["content"]}
       </motion.p>
