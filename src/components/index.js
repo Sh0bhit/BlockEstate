@@ -6,5 +6,18 @@ import Contact from "./Contact";
 import Need from "./Need";
 import Footer from "./Footer";
 import Progress from "./Progress";
+import Stack from "./Stack";
+import AboutDesc from "./AboutDesc";
 
-export { Navbar, Hero, Aim, Features, Contact, Need, Footer, Progress };
+export {
+  Navbar,
+  Hero,
+  Aim,
+  Features,
+  Contact,
+  Need,
+  Footer,
+  Progress,
+  Stack,
+  AboutDesc,
+};

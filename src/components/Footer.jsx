@@ -30,7 +30,7 @@ export default function Footer() {
             <h1 className="text-primary font-orbitron justify-center text-center mx-auto">
               Follow Us
             </h1>
-            <div className="grid xs:gap-5 gap-5  xs:grid-cols-7 grid-cols-3 mx-auto">
+            <div className=" xs:gap-5 gap-2 flex flex-wrap justify-around mx-auto">
               {socials.map((icon) => {
                 return (
                   <img
