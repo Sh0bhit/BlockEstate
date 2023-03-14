@@ -128,3 +128,25 @@ export const TimelineData = [
     desc: "finished creating stunning animations and gradients for the BlockEstate landing page. We also incorporated the latest technologies such as FramerMotion to provide users with an outstanding experience.",
   },
 ];
+
+export const sidebarMenu = [
+  {
+    tittle: "Market",
+    image: "/images/sidebar/store.svg",
+  },
+  {
+    tittle: "Dashboard",
+    image: "/images/sidebar/dashboard.svg",
+  },
+  {
+    tittle: "Favorite",
+    image: "/images/sidebar/favorite.svg",
+  },
+];
+
+export const sidebarProfile = [
+  {
+    tittle: "Profile Settings",
+    image: "/images/sidebar/pf-settings.svg",
+  },
+];
