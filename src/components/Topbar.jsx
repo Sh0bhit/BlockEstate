@@ -84,45 +84,45 @@ function Topbar() {
             alt="menu"
             onClick={() => setToggle((prev) => !prev)}
           />
-          <div
-            className={`mobile-menu ${
-              toggle ? "flex" : "hidden"
-            } p-6 absolute top-20 left-0 -z-[3] my-2 w-full bg-bgColor sidebar`}
-          >
-            <div className="relative mx-auto">
-              <form className="flex items-center">
-                <img
-                  src="/images/topbar/Search.svg"
-                  className="absolute left-[15px]"
-                  alt="search"
-                />
+          {toggle && (
+            <motion.div
+              initial={{ opacity: -1, translateY: "-100%" }}
+              whileInView={{ opacity: 1, translateY: "0%" }}
+              transition={{
+                delay: 0.1,
+                duration: 0.5,
+                type: "spring",
+                stiffness: 100,
+              }}
+              className=" p-6 absolute top-20 left-0 my-2 w-full sidebar"
+            >
+              <div className="relative mx-auto">
+                <form className="flex items-center">
+                  <img
+                    src="/images/topbar/Search.svg"
+                    className="absolute left-[15px]"
+                    alt="search"
+                  />
 
-                {counter && (
-                  <motion.label
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{
-                      delay: 0,
-                      duration: 0.5,
-                      type: "spring",
-                      stiffness: 100,
-                    }}
-                    className="absolute text-primary font-poppins left-1/2 -translate-x-1/2 text-[12px]"
-                    htmlFor="search"
-                  >
-                    Search By City
-                  </motion.label>
-                )}
-                <input
-                  type="text"
-                  className="block py-3 px-16 bg-input rounded-2xl font-poppins text-primary w-[100%]"
-                  name="search"
-                  onFocus={changeInput}
-                  onBlur={changeInput}
-                />
-              </form>
-            </div>
-          </div>
+                  {counter && (
+                    <motion.label
+                      className="absolute text-primary font-poppins left-1/2 -translate-x-1/2 text-[12px]"
+                      htmlFor="search"
+                    >
+                      Search By City
+                    </motion.label>
+                  )}
+                  <input
+                    type="text"
+                    className="block py-3 px-16 bg-input rounded-2xl font-poppins text-primary w-[100%]"
+                    name="search"
+                    onFocus={changeInput}
+                    onBlur={changeInput}
+                  />
+                </form>
+              </div>
+            </motion.div>
+          )}
         </div>
       </nav>
     </div>
