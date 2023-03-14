@@ -29,7 +29,7 @@ export default function Timeline() {
                   delay: 0.2,
                   duration: 1,
                   type: "spring",
-                  stiffness: 40,
+                  stiffness: 100,
                 }}
                 className="h-3 w-3 absolute rounded-full -left-1.5 mt-1.5 bg-primary border border-primary"
               ></motion.div>
@@ -40,7 +40,7 @@ export default function Timeline() {
                   delay: 0.5,
                   duration: 1,
                   type: "spring",
-                  stiffness: 40,
+                  stiffness: 100,
                 }}
               >
                 <p className="text-primary font-orbitron font-semibold text-[15px] my-2">

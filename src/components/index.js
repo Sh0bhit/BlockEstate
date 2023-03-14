@@ -9,6 +9,8 @@ import Progress from "./Progress";
 import Stack from "./Stack";
 import AboutDesc from "./AboutDesc";
 import Timeline from "./Timeline";
+import Sidebar from "./Sidebar";
+import Topbar from "./Topbar";
 
 export {
   Navbar,
@@ -22,4 +24,6 @@ export {
   Stack,
   AboutDesc,
   Timeline,
+  Sidebar,
+  Topbar,
 };

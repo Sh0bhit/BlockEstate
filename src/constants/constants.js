@@ -23,8 +23,14 @@ export const navAboutLinks = [
   },
 
   {
-    id: "/explore",
+    id: "/Main",
     title: "Explore",
+  },
+];
+export const navMainLinks = [
+  {
+    id: "/",
+    title: "Home",
   },
 ];
 
@@ -74,13 +80,13 @@ export const contactForm = [
 ];
 
 export const socials = [
-  { name: "twitter", link: "/images/socials/twitter.svg" },
-  { name: "website", link: "/images/socials/website.svg" },
-  { name: "discord", link: "/images/socials/discord.svg" },
-  { name: "github", link: "/images/socials/github.svg" },
-  { name: "linkedin", link: "/images/socials/linkedin.svg" },
-  { name: "mail", link: "/images/socials/mail.svg" },
-  { name: "telegram", link: "/images/socials/telegram.svg" },
+  { name: "twitter", link: "/images/socials/twitter.svg", delay: "0.1" },
+  { name: "website", link: "/images/socials/website.svg", delay: "0.2" },
+  { name: "discord", link: "/images/socials/discord.svg", delay: "0.3" },
+  { name: "github", link: "/images/socials/github.svg", delay: "0.4" },
+  { name: "linkedin", link: "/images/socials/linkedin.svg", delay: "0.5" },
+  { name: "mail", link: "/images/socials/mail.svg", delay: "0.6" },
+  { name: "telegram", link: "/images/socials/telegram.svg", delay: "0.7" },
 ];
 
 export const aboutContent = [

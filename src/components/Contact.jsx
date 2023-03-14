@@ -69,7 +69,7 @@ export default function Contact() {
                     name={`${form.tittle}`}
                     type={`${form.type}`}
                     placeholder={`${form.placeholder}`}
-                    className="block py-3 px-5 bg-input rounded-md w-full  focus:white"
+                    className="block py-3 px-5 bg-input rounded-md w-full"
                     required
                   />
                   <br />

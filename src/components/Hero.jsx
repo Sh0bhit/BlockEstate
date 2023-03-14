@@ -43,9 +43,12 @@ export function Hero() {
             </motion.p>
 
             <div className="hero-buttons flex mt-[48px] gap-7 sm:mx-0 mx-auto">
-              <button className="get-btn text-primary btn-gradient py-[10px] px-[20px] font-poppins">
+              <Link
+                className="get-btn text-primary btn-gradient py-[10px] px-[20px] font-poppins items-center flex"
+                to="Main"
+              >
                 Get Started
-              </button>
+              </Link>
               <div className="btn-gradient items-center flex">
                 <Link
                   className="explore-btn text-primary py-[10px] px-[20px] m-[2px] bg-bgColor font-poppins"

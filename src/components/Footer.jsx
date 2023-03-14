@@ -5,27 +5,38 @@ import { motion } from "framer-motion";
 export default function Footer() {
   return (
     <section className="footer" id="footer">
-      <motion.div
-        initial={{ opacity: 0, translateY: "50%" }}
-        whileInView={{ opacity: 1, translateY: "0%" }}
-        transition={{
-          delay: 0.1,
-          duration: 0.5,
-        }}
-        className="bg-footerBg flex ss:px-20 px-5 py-5"
-      >
+      <div className="bg-footerBg flex ss:px-20 px-5 py-5">
         <div className="footer-logo flex flex-col gap-3 w-full">
-          <img
+          <motion.img
+            initial={{ opacity: 0, filter: "blur(30px)" }}
+            whileInView={{ opacity: 1, filter: "blur(0px)" }}
+            transition={{
+              delay: 0.5,
+              duration: 0.5,
+              type: "spring",
+              damping: 10,
+              stiffness: 50,
+            }}
             src="/images/logo/BlockEstateLogo.png"
             alt="logo"
             className="w-20 h-20 mx-auto"
             loading="lazy"
-          ></img>
-          <p className="text-primary font-poppins text-[13px] mx-auto md:w-[40%] sm:w-[50%] w-[100%] text-center">
+          ></motion.img>
+          <motion.p
+            initial={{ opacity: 0, translateY: "100%" }}
+            whileInView={{ opacity: 1, translateY: "0%" }}
+            transition={{
+              delay: 0.5,
+              duration: 0.5,
+              type: "spring",
+              stiffness: 100,
+            }}
+            className="text-primary font-poppins text-[13px] mx-auto md:w-[40%] sm:w-[50%] w-[100%] text-center"
+          >
             Revolutionize real estate with BlockEstate. <br />
             Secure, efficient, and transparent transactions on a
             blockchain-based platform.
-          </p>
+          </motion.p>
           <div className="features-gradient flex flex-col gap-5 px-10 py-5 md:w-[50%] sm:w-[60%] w-[80%] mx-auto mt-5">
             <h1 className="text-primary font-orbitron justify-center text-center mx-auto">
               Follow Us
@@ -33,13 +44,21 @@ export default function Footer() {
             <div className=" xs:gap-5 gap-2 flex flex-wrap justify-around mx-auto">
               {socials.map((icon) => {
                 return (
-                  <img
+                  <motion.img
+                    initial={{ opacity: -1, translateY: "100%" }}
+                    whileInView={{ opacity: 1, translateY: "0%" }}
+                    transition={{
+                      delay: icon.delay,
+                      duration: 0.5,
+                      type: "spring",
+                      stiffness: 100,
+                    }}
                     key={icon.name}
                     src={`${icon.link}`}
                     alt={`${icon.name}`}
                     className="cursor-pointer h-10 w-10"
                     loading="lazy"
-                  ></img>
+                  ></motion.img>
                 );
               })}
             </div>
@@ -50,7 +69,7 @@ export default function Footer() {
             rights reserved.
           </h1>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

@@ -8,7 +8,7 @@ export default function Navbar(props) {
   return (
     <div>
       <nav className="navbar w-full flex py-6 justify-between items-center bg-bgColor  fixed top-0 z-[1]">
-        <div className={`logo flex justify-between items-center sm:pl-16 pl-5`}>
+        <div className="logo flex justify-between items-center sm:pl-16 pl-5">
           <img
             src="/images/logo/BlockEstateLogo.png"
             alt="logo"
