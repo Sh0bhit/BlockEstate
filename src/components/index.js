@@ -1,16 +1,17 @@
 import Navbar from "./Navbar";
-import { Hero } from "./Hero";
-import Aim from "./Aim";
-import Features from "./Features";
-import Contact from "./Contact";
-import Need from "./Need";
+import { Hero } from "./Home/Hero";
+import Aim from "./Home/Aim";
+import Features from "./Home/Features";
+import Contact from "./Home/Contact";
+import Need from "./Home/Need";
 import Footer from "./Footer";
 import Progress from "./Progress";
-import Stack from "./Stack";
-import AboutDesc from "./AboutDesc";
-import Timeline from "./Timeline";
-import Sidebar from "./Sidebar";
-import Topbar from "./Topbar";
+import Stack from "./About/Stack";
+import AboutDesc from "./About/AboutDesc";
+import Timeline from "./About/Timeline";
+import SidebarLeft from "./Main/SidebarLeft";
+import Topbar from "./Main/Topbar";
+import SidebarRight from "./Main/SidebarRight";
 
 export {
   Navbar,
@@ -24,6 +25,7 @@ export {
   Stack,
   AboutDesc,
   Timeline,
-  Sidebar,
+  SidebarLeft,
   Topbar,
+  SidebarRight,
 };

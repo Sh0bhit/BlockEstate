@@ -37,7 +37,7 @@ export default function Footer() {
             Secure, efficient, and transparent transactions on a
             blockchain-based platform.
           </motion.p>
-          <div className="features-gradient flex flex-col gap-5 px-10 py-5 md:w-[50%] sm:w-[60%] w-[80%] mx-auto mt-5">
+          <div className="glass-gradient flex flex-col gap-5 px-10 py-5 md:w-[50%] sm:w-[60%] w-[80%] mx-auto mt-5">
             <h1 className="text-primary font-orbitron justify-center text-center mx-auto">
               Follow Us
             </h1>

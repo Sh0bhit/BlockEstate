@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { aboutContent } from "../constants/constants";
+import { aboutContent } from "../../constants/constants";
 
 export default function AboutDesc() {
   return (
@@ -44,7 +44,7 @@ export default function AboutDesc() {
         }}
         src="/images/about/about1.png"
         alt="about1"
-        className="object-cover md:w-[400px] w-[300px] md:h-[400px] h-[300px] features-gradient p-5"
+        className="object-cover md:w-[400px] w-[300px] md:h-[400px] h-[300px] glass-gradient p-5"
       />
     </div>
   );

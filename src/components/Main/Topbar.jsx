@@ -7,7 +7,7 @@ function Topbar() {
 
   return (
     <div className="justify-center flex">
-      <nav className="navbar w-[95%] flex py-3 justify-between items-center features-gradient fixed top-0 z-[1]">
+      <nav className="navbar w-[95%] flex py-3 justify-between items-center glass-gradient fixed top-0 z-[1]">
         <div className="flex justify-between items-center mx-5">
           <img
             className="w-16 h-16"

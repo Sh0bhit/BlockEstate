@@ -59,7 +59,7 @@ html {
     /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
 }
 
-.features-gradient {
+.glass-gradient {
   backdrop-filter: blur(13px) saturate(200%);
   -webkit-backdrop-filter: blur(13px) saturate(200%);
   background-color: rgba(255, 255, 255, 0.1);

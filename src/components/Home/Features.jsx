@@ -1,5 +1,5 @@
 import React from "react";
-import { features } from "../constants/constants";
+import { features } from "../../constants/constants";
 import { motion } from "framer-motion";
 
 export default function Features() {
@@ -14,7 +14,7 @@ export default function Features() {
           type: "spring",
           stiffness: 100,
         }}
-        className="features-div w-[80%] features-gradient text-primary flex flex-col mx-auto py-[50px]"
+        className="features-div w-[80%] glass-gradient text-primary flex flex-col mx-auto py-[50px]"
       >
         <motion.div
           initial={{ opacity: 0, translateY: "50%" }}

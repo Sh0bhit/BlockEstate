@@ -1,10 +1,10 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { techStack } from "../constants/constants";
+import { techStack } from "../../constants/constants";
 
 export default function Stack() {
   return (
-    <div className="w-[80%] features-gradient mx-auto mt-24 py-5">
+    <div className="w-[80%] glass-gradient mx-auto mt-24 py-5">
       <motion.h1
         initial={{ opacity: 0, translateY: "50%" }}
         whileInView={{ opacity: 1, translateY: "0%" }}

@@ -1,4 +1,12 @@
-import { Navbar, Hero, Aim, Features, Contact, Need } from "../components";
+import {
+  Navbar,
+  Hero,
+  Aim,
+  Features,
+  Contact,
+  Need,
+  Footer,
+} from "../components";
 import { navHomeLinks } from "../constants/constants";
 
 export default function Home() {
@@ -10,6 +18,7 @@ export default function Home() {
       <Features />
       <Need />
       <Contact />
+      <Footer />
     </div>
   );
 }

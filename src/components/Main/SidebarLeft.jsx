@@ -1,10 +1,10 @@
 import React from "react";
-import { sidebarMenu, sidebarProfile } from "../constants/constants";
+import { sidebarMenu, sidebarProfile } from "../../constants/constants";
 
-export default function Sidebar() {
+export default function SidebarLeft() {
   return (
     <div className="sm:flex hidden">
-      <div className="fixed features-gradient top-[100px] h-[85%] w-[200px]">
+      <div className="fixed glass-gradient top-[100px] h-[85%] w-[200px]">
         <h1 className="text-primary font-orbitron px-5 pt-5 opacity-70">
           Menu
         </h1>
@@ -25,18 +25,18 @@ export default function Sidebar() {
           })}
         </div>
 
-        <h1 className="text-primary font-orbitron px-5 opacity-70">Profile</h1>
+        <h1 className="text-primary font-orbitron px-5 opacity-70">Account</h1>
         <hr className="w-[80%] mx-auto my-2 opacity-50" />
-        <div className="flex flex-col gap-5 my-5">
-          {sidebarProfile.map((menu) => {
+        <div className="flex flex-col gap-3 my-5">
+          {sidebarProfile.map((profile) => {
             return (
               <div
                 className="flex gap-2 w-[80%] mx-auto cursor-pointer rounded-[5px]"
-                key={menu.tittle}
+                key={profile.tittle}
               >
-                <img src={menu.image} alt={menu.tittle} />
+                <img src={profile.image} alt={profile.tittle} />
                 <h1 className="text-primary font-poppins text-[14px]">
-                  {menu.tittle}
+                  {profile.tittle}
                 </h1>
               </div>
             );

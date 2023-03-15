@@ -1,5 +1,5 @@
 import React from "react";
-import { contactForm } from "../constants/constants";
+import { contactForm } from "../../constants/constants";
 import { motion } from "framer-motion";
 
 export default function Contact() {
@@ -15,7 +15,7 @@ export default function Contact() {
             type: "spring",
             stiffness: 50,
           }}
-          className="contact-img features-gradient m-auto"
+          className="contact-img glass-gradient m-auto"
         >
           <motion.img
             initial={{ opacity: 0, translateY: "-50%" }}
@@ -41,7 +41,7 @@ export default function Contact() {
             type: "spring",
             stiffness: 50,
           }}
-          className="contact-form features-gradient p-10 w-full"
+          className="contact-form glass-gradient p-10 w-full"
         >
           <h1 className="text-primary font-orbitron xs:text-[40px] text-[25px] font-semibold ">
             Contact Us
