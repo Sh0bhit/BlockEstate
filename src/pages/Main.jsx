@@ -1,5 +1,11 @@
 import React from "react";
-import { SidebarLeft, SidebarRight, Topbar } from "../components";
+import {
+  SidebarLeft,
+  SidebarRight,
+  Topbar,
+  Cards,
+  Banner,
+} from "../components";
 
 export default function Main() {
   return (
@@ -7,7 +13,10 @@ export default function Main() {
       <Topbar />
       <SidebarLeft />
       <SidebarRight />
-      <section className="sm:mx-[250px] mx-auto sm:w-auto w-[80%]"></section>
+      <section className="sm:mx-[230px] mx-auto sm:w-auto w-[80%]">
+        <Banner />
+        <Cards />
+      </section>
     </>
   );
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Searchbar, SearchbarMobile } from "./Searchbar";
+import { Link } from "react-router-dom";
 
 function Topbar() {
   const [toggle, setToggle] = useState(false);
@@ -8,17 +9,20 @@ function Topbar() {
   return (
     <div className="justify-center flex">
       <nav className="navbar w-[95%] flex py-3 justify-between items-center glass-gradient fixed top-0 z-[1]">
-        <div className="flex justify-between items-center mx-5">
-          <img
-            className="w-16 h-16"
-            src="/images/logo/BlockEstateLogo.png"
-            alt="logo"
-            loading="lazy"
-          />
-          <h1 className="text-primary font-orbitron font-semibold md:text-[20px] text-[15px]">
-            BlockEstate
-          </h1>
-        </div>
+        <Link to="/">
+          <div className="flex justify-between items-center mx-5">
+            <img
+              className="w-16 h-16"
+              src="/images/logo/BlockEstateLogo.png"
+              alt="logo"
+              loading="lazy"
+            />
+            <h1 className="text-primary font-orbitron font-semibold md:text-[20px] text-[15px]">
+              BlockEstate
+            </h1>
+          </div>
+        </Link>
+
         <Searchbar />
         <div className="sm:flex hidden mx-10">
           <img
@@ -33,7 +37,6 @@ function Topbar() {
             <p className="text-primary font-poppins text-[10px]">Logged In</p>
           </div>
         </div>
-
         <div className="sm:hidden flex-col justify-between  items-center">
           <img
             src={

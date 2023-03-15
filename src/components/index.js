@@ -12,6 +12,8 @@ import Timeline from "./About/Timeline";
 import SidebarLeft from "./Main/SidebarLeft";
 import Topbar from "./Main/Topbar";
 import SidebarRight from "./Main/SidebarRight";
+import Cards from "./Main/Cards";
+import Banner from "./Main/Banner";
 
 export {
   Navbar,
@@ -28,4 +30,6 @@ export {
   SidebarLeft,
   Topbar,
   SidebarRight,
+  Cards,
+  Banner,
 };
