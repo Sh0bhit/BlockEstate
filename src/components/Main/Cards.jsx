@@ -3,7 +3,7 @@ import { cardData } from "../../constants/constants";
 
 export default function Cards() {
   return (
-    <div className="xs:mt-10 mt-[150px] sm:flex grid grid-cols-2 xs:gap-8 gap-5 flex-wrap justify-center">
+    <div className="xs:mt-10 mt-[150px] mb-[100px] sm:flex grid grid-cols-2 xs:gap-8 gap-5 flex-wrap justify-center">
       {cardData.map((card) => {
         return (
           <div

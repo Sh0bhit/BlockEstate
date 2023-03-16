@@ -192,7 +192,7 @@ export const BottomData = [
     image: "/images/sidebar/favorite.svg",
   },
   {
-    tittle: "Profile Settings",
+    tittle: "Settings",
     image: "/images/sidebar/pf-settings.svg",
   },
 ];

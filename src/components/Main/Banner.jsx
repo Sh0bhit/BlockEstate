@@ -33,8 +33,8 @@ export default function Banner() {
             Unlock your dreams with BlockEstate - Where property meets
             possibility
           </p>
-          <p className="btn-gradient md:w-[150px] w-[100px] lg:text-[15px] md:text-[12px] text-[8px] text-center px-2 py-3 text-primary font-orbitron font-semibold">
-            Explore Now
+          <p className="btn-gradient md:w-[150px] w-[100px] lg:text-[15px] md:text-[12px] text-[8px] text-center px-2 py-3 text-primary font-orbitron font-semibold cursor-pointer">
+            Upload
           </p>
         </div>
       </div>
