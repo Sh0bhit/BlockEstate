@@ -18,6 +18,7 @@ export default function BottomBar() {
                     ? "absolute left-[50%] -translate-x-1/2 bottom-10"
                     : "w-8 h-8 mx-auto"
                 }
+                alt={Data.tittle}
               />
               <h1
                 className={`font-orbitron text-[7px] opacity-50 text-center ${
