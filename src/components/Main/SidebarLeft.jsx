@@ -16,7 +16,7 @@ export default function SidebarLeft() {
                 className="flex gap-2 w-[80%] mx-auto cursor-pointer"
                 key={menu.tittle}
               >
-                <img src={menu.image} alt={menu.tittle} />
+                <img src={menu.image} alt={menu.tittle} className="w-5 h-5" />
                 <h1 className="text-primary font-poppins text-[14px]">
                   {menu.tittle}
                 </h1>
@@ -34,7 +34,11 @@ export default function SidebarLeft() {
                 className="flex gap-2 w-[80%] mx-auto cursor-pointer rounded-[5px]"
                 key={profile.tittle}
               >
-                <img src={profile.image} alt={profile.tittle} />
+                <img
+                  src={profile.image}
+                  alt={profile.tittle}
+                  className="w-5 h-5"
+                />
                 <h1 className="text-primary font-poppins text-[14px]">
                   {profile.tittle}
                 </h1>

@@ -173,3 +173,26 @@ export const cardData = [
     image: "/images/estate/images1.jpg",
   },
 ];
+
+export const BottomData = [
+  {
+    tittle: "Market",
+    image: "/images/sidebar/store.svg",
+  },
+  {
+    tittle: "Dashboard",
+    image: "/images/sidebar/dashboard.svg",
+  },
+  {
+    tittle: "Upload",
+    image: "/images/sidebar/Upload.svg",
+  },
+  {
+    tittle: "Favorite",
+    image: "/images/sidebar/favorite.svg",
+  },
+  {
+    tittle: "Profile Settings",
+    image: "/images/sidebar/pf-settings.svg",
+  },
+];

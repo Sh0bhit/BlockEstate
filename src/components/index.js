@@ -14,6 +14,7 @@ import Topbar from "./Main/Topbar";
 import SidebarRight from "./Main/SidebarRight";
 import Cards from "./Main/Cards";
 import Banner from "./Main/Banner";
+import BottomBar from "./Main/BottomBar";
 
 export {
   Navbar,
@@ -32,4 +33,5 @@ export {
   SidebarRight,
   Cards,
   Banner,
+  BottomBar,
 };
