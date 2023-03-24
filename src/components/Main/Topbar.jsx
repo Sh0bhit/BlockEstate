@@ -1,10 +1,18 @@
 import React from "react";
-import { useState } from "react";
 import { Searchbar, SearchbarMobile } from "./Searchbar";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
-function Topbar() {
+function Topbar({ account, setAccount }) {
   const [toggle, setToggle] = useState(false);
+
+  const connectHandler = async () => {
+    const accounts = await window.ethereum.request({
+      method: "eth_requestAccounts",
+    });
+    setAccount(accounts[0]);
+    console.log(accounts[0]);
+  };
 
   return (
     <div className="justify-center flex">
@@ -25,17 +33,18 @@ function Topbar() {
 
         <Searchbar />
         <div className="sm:flex hidden mx-10">
-          <img
-            className="w-11 h-11 rounded-full"
-            src="/images/profile/pf.png"
-            alt="profile"
-          />
-          <div className="flex flex-col px-2">
-            <h1 className="text-primary font-orbitron font-semibold md:text-[15px] text-[13px]">
-              Shobhitexe
-            </h1>
-            <p className="text-primary font-poppins text-[10px]">Logged In</p>
-          </div>
+          {account ? (
+            <button className="btn-gradient md:w-[150px] w-[100px] lg:text-[15px] md:text-[12px] text-[8px] text-center px-2 py-3 text-primary font-orbitron font-semibold cursor-pointer">
+              {account.slice(0, 6) + "...." + account.slice(38, 42)}
+            </button>
+          ) : (
+            <button
+              className="btn-gradient md:w-[150px] w-[100px] lg:text-[15px] md:text-[12px] text-[8px] text-center px-2 py-3 text-primary font-orbitron font-semibold cursor-pointer"
+              onClick={connectHandler}
+            >
+              Connect Wallet
+            </button>
+          )}
         </div>
         <div className="sm:hidden flex-col justify-between  items-center">
           <img

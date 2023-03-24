@@ -127,6 +127,11 @@ export const TimelineData = [
     heading: "BlockEstate Landing Page Animations",
     desc: "finished creating stunning animations and gradients for the BlockEstate landing page. We also incorporated the latest technologies such as FramerMotion to provide users with an outstanding experience.",
   },
+  {
+    date: "March 16th 2023",
+    heading: "Marketplace front end ",
+    desc: "Just wrapped up the front-end coding for the marketplace page and it was an awesome experience. I picked up new skills, from designing cards to making the page responsive. Overall, I'm thrilled with what I accomplished and the lessons I learned. Looking forward to applying these skills in future projects!",
+  },
 ];
 
 export const sidebarMenu = [
@@ -158,18 +163,18 @@ export const sidebarProfile = [
 export const cardData = [
   {
     id: "1",
-    area: "united states",
+    address: "united states",
     name: "joseph",
     price: "10",
-    profileImg: "/images/profile/pf.png",
+    area: "5 sqft",
     image: "/images/estate/images.jpeg",
   },
   {
     id: "2",
-    area: "united Kingdom",
+    address: "united Kingdom",
     name: "stalin",
     price: "20",
-    profileImg: "/images/profile/pf.png",
+    area: "3 sqft",
     image: "/images/estate/images1.jpg",
   },
 ];
