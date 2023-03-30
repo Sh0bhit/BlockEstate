@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function SidebarWallet() {
+export default function SidebarWallet({ balance }) {
   return (
     <div className="glass-gradient pb-5">
       <h1 className="text-primary font-orbitron font-semibold text-center mt-5">
@@ -8,7 +8,8 @@ export default function SidebarWallet() {
         Balance
       </h1>
       <h1 className="text-primary font-orbitron font-semibold w-[40%] mx-auto mt-3 text-[10px] text-center">
-        <span className="text-[20px]">20</span> Eth
+        <span className="text-[20px]">{parseFloat(balance).toFixed(3)}</span>
+        Eth
         <hr className="opacity-70" />
       </h1>
       <div className="flex justify-around">

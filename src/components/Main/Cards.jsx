@@ -1,13 +1,18 @@
 import React from "react";
 
-export default function Cards({ homes }) {
+export default function Cards({ homes, cardId, setCardToggle }) {
+  function fetchCardId(id) {
+    setCardToggle(true);
+    return cardId(id);
+  }
   return (
     <div className="xs:mt-10 mt-[150px] mb-[100px] sm:flex grid grid-cols-2 xs:gap-8 gap-5 flex-wrap justify-center">
       {homes.map((home, index) => {
         return (
           <div
-            className="flex relative sm:w-[200px] xs:w-[200px] w-[150px] sm:h-[300px] xs:h-[250px] h-[200px] sm:mx-0 mx-auto"
+            className="flex relative sm:w-[200px] xs:w-[200px] w-[150px] sm:h-[300px] xs:h-[250px] h-[200px] sm:mx-0 mx-auto cursor-pointer"
             key={index}
+            onClick={() => fetchCardId(index)}
           >
             <img
               src={home.image}

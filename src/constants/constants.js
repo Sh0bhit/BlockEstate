@@ -154,10 +154,10 @@ export const sidebarProfile = [
     tittle: "Profile Settings",
     image: "/images/sidebar/pf-settings.svg",
   },
-  {
-    tittle: "Logout",
-    image: "/images/sidebar/logout.svg",
-  },
+  // {
+  //   tittle: "Logout",
+  //   image: "/images/sidebar/logout.svg",
+  // },
 ];
 
 export const cardData = [

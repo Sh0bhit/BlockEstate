@@ -2,8 +2,9 @@ import React from "react";
 import { Searchbar, SearchbarMobile } from "./Searchbar";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { ethers } from "ethers";
 
-function Topbar({ account, setAccount }) {
+function Topbar({ account, setAccount, provider, bal }) {
   const [toggle, setToggle] = useState(false);
 
   const connectHandler = async () => {
@@ -12,6 +13,10 @@ function Topbar({ account, setAccount }) {
     });
     setAccount(accounts[0]);
     console.log(accounts[0]);
+
+    const balance = await provider.getBalance(accounts[0]);
+    const balanceInEth = ethers.utils.formatEther(balance);
+    bal(balanceInEth);
   };
 
   return (

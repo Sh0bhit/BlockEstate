@@ -6,6 +6,7 @@ import {
   Cards,
   Banner,
   BottomBar,
+  Product,
 } from "../components";
 import { ethers } from "ethers";
 import { useEffect, useState } from "react";
@@ -18,6 +19,16 @@ export default function Main() {
   const [broker, setBroker] = useState(null);
   const [homes, setHomes] = useState([]);
   const [account, setAccount] = useState(null);
+  const [balance, setBalance] = useState(0);
+  const [cardId, setCardId] = useState(0);
+  const [cardToggle, setCardToggle] = useState(false);
+
+  function pull_bal(data) {
+    setBalance(data);
+  }
+  function pull_CardId(id) {
+    setCardId(id);
+  }
 
   const loadBlockchainData = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -55,7 +66,12 @@ export default function Main() {
         method: "eth_requestAccounts",
       });
       setAccount(accounts[0]);
-      console.log(accounts[0]);
+      console.log(account);
+      const balance = await provider.getBalance(accounts[0]);
+      const balanceInEth = ethers.utils.formatEther(balance);
+
+      setBalance(balanceInEth);
+      console.log(balanceInEth);
     });
   };
 
@@ -64,13 +80,35 @@ export default function Main() {
   }, []);
   return (
     <div>
-      <Topbar account={account} setAccount={setAccount} />
+      <Topbar
+        account={account}
+        setAccount={setAccount}
+        provider={provider}
+        bal={pull_bal}
+      />
       <SidebarLeft />
-      <SidebarRight />
+      <SidebarRight balance={balance} />
       <BottomBar />
       <section className="sm:mx-[230px] mx-auto sm:w-auto w-[80%]">
-        <Banner />
-        <Cards homes={homes} />
+        {!cardToggle && (
+          <div className="">
+            <Banner />
+            <Cards
+              homes={homes}
+              cardId={pull_CardId}
+              setCardToggle={setCardToggle}
+            />
+          </div>
+        )}
+        {cardToggle && (
+          <Product
+            homes={homes}
+            id={cardId}
+            setCardToggle={setCardToggle}
+            broker={broker}
+            account={account}
+          />
+        )}
       </section>
     </div>
   );
