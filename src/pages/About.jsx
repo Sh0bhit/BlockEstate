@@ -1,6 +1,6 @@
 import React from "react";
 import { Navbar, Stack, AboutDesc, Timeline, Footer } from "../components";
-import { navAboutLinks } from "../constants/constants";
+import { navAboutLinks } from "../data/constants";
 import { motion } from "framer-motion";
 
 export default function About() {

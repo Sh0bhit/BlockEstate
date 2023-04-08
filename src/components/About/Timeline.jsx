@@ -1,5 +1,5 @@
 import React from "react";
-import { TimelineData } from "../../constants/constants";
+import { TimelineData } from "../../data/constants";
 import { motion } from "framer-motion";
 
 export default function Timeline() {

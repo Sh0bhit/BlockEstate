@@ -1,5 +1,5 @@
 import React from "react";
-import { socials } from "../constants/constants";
+import { socials } from "../data/constants";
 import { motion } from "framer-motion";
 
 export default function Footer() {

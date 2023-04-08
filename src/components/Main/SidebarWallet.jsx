@@ -7,9 +7,9 @@ export default function SidebarWallet({ balance }) {
         <span className="font-poppins font-normal text-[13px]">Your</span>{" "}
         Balance
       </h1>
-      <h1 className="text-primary font-orbitron font-semibold w-[40%] mx-auto mt-3 text-[10px] text-center">
-        <span className="text-[20px]">{parseFloat(balance).toFixed(3)}</span>
-        Eth
+      <h1 className="text-primary font-orbitron font-semibold w-[40%] mx-auto mt-3 text-[12px] text-center">
+        <span className="text-[20px]">{parseFloat(balance).toFixed(3)}</span>{" "}
+        MATIC
         <hr className="opacity-70" />
       </h1>
       <div className="flex justify-around">
@@ -21,7 +21,7 @@ export default function SidebarWallet({ balance }) {
               className="w-7 h-7"
             />
             <h1 className="text-primary font-orbitron font-semibold my-auto text-[11px]">
-              Eth / Usd
+              MATIC / Usd
             </h1>
           </div>
           <h1 className="text-primary font-poppins text-[15px]">$1,697.41</h1>{" "}

@@ -179,25 +179,75 @@ export const cardData = [
   },
 ];
 
-export const BottomData = [
+// export const BottomData = [
+//   {
+//     tittle: "Market",
+//     image: "/images/sidebar/store.svg",
+//   },
+//   {
+//     tittle: "Dashboard",
+//     image: "/images/sidebar/dashboard.svg",
+//   },
+//   {
+//     tittle: "Upload",
+//     image: "/images/sidebar/Upload.svg",
+//   },
+//   {
+//     tittle: "Favorite",
+//     image: "/images/sidebar/favorite.svg",
+//   },
+//   {
+//     tittle: "Settings",
+//     image: "/images/sidebar/pf-settings.svg",
+//   },
+// ];
+
+export const UploadForm = [
   {
-    tittle: "Market",
-    image: "/images/sidebar/store.svg",
+    name: "tittle",
+    type: "text",
+    placeholder: "Enter property name",
   },
   {
-    tittle: "Dashboard",
-    image: "/images/sidebar/dashboard.svg",
+    name: "address",
+    type: "text",
+    placeholder: "Enter property Address",
   },
   {
-    tittle: "Upload",
-    image: "/images/sidebar/Upload.svg",
+    name: "price",
+    type: "number",
+    min: 0,
+    step: "0.01",
+    placeholder: "Selling price",
   },
   {
-    tittle: "Favorite",
-    image: "/images/sidebar/favorite.svg",
+    name: "residence",
+    type: "text",
+    placeholder: "Type of residence",
   },
   {
-    tittle: "Settings",
-    image: "/images/sidebar/pf-settings.svg",
+    name: "bedrooms",
+    type: "text",
+    placeholder: "Bed Rooms",
+  },
+  {
+    name: "bathrooms",
+    type: "text",
+    placeholder: "Bath Rooms",
+  },
+  {
+    name: "area",
+    type: "text",
+    placeholder: "Area in sqft",
+  },
+  {
+    name: "yearbuilt",
+    type: "text",
+    placeholder: "Year Built",
+  },
+  {
+    name: "wallet",
+    type: "text",
+    placeholder: "Wallet Address",
   },
 ];

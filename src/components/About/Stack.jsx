@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { techStack } from "../../constants/constants";
+import { techStack } from "../../data/constants";
 
 export default function Stack() {
   return (

@@ -13,7 +13,7 @@ function App() {
       <Routes onUpdate={() => window.scrollTo(0, 0)}>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/Main" element={<Main />} />
+        <Route path="/Main/*" element={<Main />} />
       </Routes>
     </div>
   );

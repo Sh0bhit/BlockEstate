@@ -1,59 +1,114 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { ethers } from "ethers";
 
-export default function Product({ id, homes, setCardToggle, broker, account }) {
-  const [HasBought, setHasBought] = useState(false);
-  const [HasSold, setHasSold] = useState(false);
-  const [HasInspected, setHasInspected] = useState(false);
-  const [HasLended, setHasLended] = useState(false);
+export default function Product({
+  id,
+  broker,
+  provider,
+  account,
+  estates,
+  realEstate,
+  contractPrice,
+}) {
+  const [estateOwner, setEstateOwner] = useState("");
 
-  const [buyer, setBuyer] = useState(null);
-  const [seller, setSeller] = useState(null);
-  const [lender, setLender] = useState(null);
-  const [inspector, setInspector] = useState(null);
+  const [isListed, setIsListed] = useState(true);
 
-  const [owner, setOwner] = useState(null);
+  const [isSold, setIsSold] = useState(false);
 
-  const fetchDetails = async () => {
-    const Buyer = await broker.buyer(homes[id].id);
-    setBuyer(Buyer);
+  const [resellPrice, setResellPrice] = useState(0);
 
-    const Seller = await broker.seller();
-    setSeller(Seller);
-
-    const Lender = await broker.lender();
-    setLender(Lender);
-
-    const Inspector = await broker.inspector();
-    setInspector(Inspector);
+  const tokens = (n) => {
+    return ethers.utils.parseUnits(n.toString(), "ether");
   };
 
-  const fetchOwner = async () => {
-    if (await broker.isListed(homes[id].id)) {
-      const Owner = await broker.buyer(homes[id].id);
-      setOwner(Owner);
+  async function getOwner() {
+    const brokerData = await broker.property(id + 1);
+
+    const listed = await brokerData["listed"];
+    const isSold = await brokerData["reSold"];
+    const signer = await provider.getSigner();
+    const owner = await realEstate.connect(signer).ownerOf(id + 1);
+
+    setIsListed(listed);
+    setIsSold(isSold);
+
+    listed
+      ? isSold
+        ? setEstateOwner(owner)
+        : setEstateOwner(brokerData["seller"])
+      : setEstateOwner(brokerData["owner"]);
+  }
+  async function buy() {
+    const signer = await provider.getSigner();
+    const brokerData = await broker.property(id + 1);
+
+    try {
+      if (isSold) {
+        const transaction = await broker
+          .connect(signer)
+          .buyProperties(id + 1, broker.address, {
+            value: brokerData["price"],
+          });
+
+        await transaction.wait();
+      } else {
+        const transaction = await broker
+          .connect(signer)
+          .buyProperties(id + 1, realEstate.address, {
+            value: brokerData["price"],
+          });
+
+        await transaction.wait();
+      }
+    } catch {
+      console.log("Transaction Failed");
     }
-  };
+
+    setEstateOwner(brokerData["owner"]);
+    const listed = await brokerData["listed"];
+    setIsListed(listed);
+  }
+
+  async function resell() {
+    const signer = await provider.getSigner();
+
+    try {
+      const transaction = await broker
+        .connect(signer)
+        .resellProperties(tokens(resellPrice), id + 1, broker.address, {
+          value: tokens(0.001),
+        });
+
+      await transaction.wait();
+
+      const owner = await realEstate.connect(signer).ownerOf(id + 1);
+
+      setEstateOwner(owner);
+      console.log("Reselling");
+    } catch {
+      console.log("Transaction Failed");
+    }
+  }
 
   useEffect(() => {
-    fetchDetails();
-    fetchOwner();
-  }, [HasSold]);
+    getOwner();
+  });
 
   return (
     <div className="glass-gradient w-[95%] md:mt-[220px] mt-[150px] sm:mb-[20px] mb-[150px] mx-auto">
-      {homes[id] && (
+      {estates[id] && (
         <div className="flex md:flex-row flex-col p-10 gap-14">
           <div className="flex gap-10">
-            <button
+            <Link
               className="absolute top-2 text-primary left-11 cursor-pointer"
-              onClick={() => {
-                setCardToggle(false);
-              }}
+              to="/Main"
             >
               {"<--"} Back
-            </button>
+            </Link>
             <img
-              src={homes[id].image}
+              src={estates[id]["image"]}
               className="w-[300px] md:h-[400px] h-[300px] object-cover rounded-xl mx-auto"
               alt="property"
             />
@@ -62,64 +117,102 @@ export default function Product({ id, homes, setCardToggle, broker, account }) {
           <div className="flex flex-col ">
             <div className="flex flex-col">
               <h1 className="text-primary font-orbitron font-semibold lg:text-[35px] md:text-[30px] text-[25px] headTextgradient lg:leading-10 leading-9">
-                {homes[id].name}
+                {estates[id].tittle}
               </h1>
               <p className="text-primary font-poppins opacity-70 lg:text-[15px] text-[13px]">
-                {homes[id].address}
+                {estates[id].address}
               </p>
             </div>
             <h1 className="text-primary font-orbitron font-semibold lg:text-[25px] text-[20px] mt-5">
               Price :-{" "}
               <span className="font-poppins lg:text-[20px] text-[17px] opacity-90">
-                {homes[id].attributes[0].value} ETH
+                {contractPrice[id]} MATIC
               </span>
             </h1>
             <p className="font-poppins text-primary text-[13px] w-[80%] mt-3">
-              {homes[id].description}
+              {estates[id].description}
             </p>
             <div className="border-b-2 mt-5 opacity-40" />
-            {owner ? (
+            {estateOwner.toLowerCase() === account ? (
               <div className="font-orbitron text-primary">
-                owned By :- {owner.slice(0, 6) + "...." + owner.slice(38, 42)}
+                owned By :- You {"("}{" "}
+                {estateOwner.slice(0, 6) + "...." + estateOwner.slice(38, 42)}{" "}
+                {")"}
               </div>
             ) : (
-              <div>
-                {account === inspector ? (
-                  <button className="btn-gradient mt-2 w-[100px] text-center px-2 py-2 text-primary font-orbitron font-semibold cursor-pointer">
-                    Approve inspection
-                  </button>
-                ) : account === lender ? (
-                  <button className="btn-gradient mt-2 w-[100px] text-center px-2 py-2 text-primary font-orbitron font-semibold cursor-pointer">
-                    Approve & Lend
-                  </button>
-                ) : account === seller ? (
-                  <button className="btn-gradient mt-2 w-[100px] text-center px-2 py-2 text-primary font-orbitron font-semibold cursor-pointer">
-                    Approve & Sell
-                  </button>
-                ) : (
-                  <button className="btn-gradient mt-2 w-[100px] text-center px-2 py-2 text-primary font-orbitron font-semibold cursor-pointer">
-                    Buy
-                  </button>
-                )}
+              <div className="font-orbitron text-primary">
+                owned By :-{" "}
+                {estateOwner.slice(0, 6) + "...." + estateOwner.slice(38, 42)}
               </div>
+            )}
+            {isListed ? (
+              <button
+                className="btn-gradient mt-2 w-[100px] text-center px-2 py-2 text-primary font-orbitron font-semibold cursor-pointer"
+                onClick={buy}
+              >
+                Buy
+              </button>
+            ) : estateOwner.toLowerCase() === account ? (
+              <div>
+                <input
+                  type="Number"
+                  className="block py-3 px-5 bg-input text-primary rounded-md w-full my-3"
+                  placeholder="Resell Price"
+                  step="0.01"
+                  onChange={(event) => {
+                    setResellPrice(event.target.value);
+                  }}
+                  value={resellPrice}
+                  required
+                />
+                <button
+                  className="btn-gradient mt-2 w-[100px] text-center px-2 py-2 text-primary font-orbitron font-semibold cursor-pointer"
+                  onClick={resell}
+                >
+                  Resell
+                </button>
+              </div>
+            ) : (
+              <button className="btn-gradient mt-2 w-[100px] text-center px-2 py-2 text-primary font-orbitron font-semibold cursor-pointer">
+                Sold Out
+              </button>
             )}
 
             <div className="border-b-2 mt-2 opacity-40" />
             <ul className="flex flex-col text-primary mt-5 text-[15px]">
-              {homes[id].attributes.map((props, index) => {
-                return (
-                  <li className="font-orbitron" key={index}>
-                    {props.trait_type === "Purchase Price" ? (
-                      ""
-                    ) : (
-                      <div>
-                        {props.trait_type} :-{" "}
-                        <span className="font-poppins">{props.value} </span>
-                      </div>
-                    )}
-                  </li>
-                );
-              })}
+              <li className="font-orbitron">
+                <div>
+                  Type of residence:-
+                  <span className="font-poppins">
+                    {" "}
+                    {estates[id].residence}{" "}
+                  </span>
+                </div>
+              </li>
+              <li className="font-orbitron">
+                <div>
+                  Bedrooms:-
+                  <span className="font-poppins"> {estates[id].bedrooms} </span>
+                </div>
+              </li>
+              <li className="font-orbitron">
+                <div>
+                  Bathrooms:-
+                  <span className="font-poppins">
+                    {" "}
+                    {estates[id].bathrooms}{" "}
+                  </span>
+                </div>
+              </li>
+              <li className="font-orbitron">
+                <div>
+                  Year Built:-
+                  <span className="font-poppins">
+                    {" "}
+                    {estates[id].yearbuilt}{" "}
+                  </span>
+                </div>
+              </li>
             </ul>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { aboutContent } from "../../constants/constants";
+import { aboutContent } from "../../data/constants";
 
 export default function AboutDesc() {
   return (

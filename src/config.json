@@ -1,10 +1,10 @@
 {
-  "31337": {
-    "contract": {
-      "address": "0x5FbDB2315678afecb367f032d93F642f64180aa3"
-    },
+  "80001": {
     "brokerContract": {
-      "address": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
+      "address": "0xBbB3b02a9A5715ACD66F45226b671ee29A4f9E85"
+    },
+    "realEstateContract": {
+      "address": "0xae326A70f5Ab46588F2197d71BBe56C90B35faDf"
     }
   }
 }

@@ -9,7 +9,11 @@ contract RealEstate is ERC721URIStorage {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
 
-    constructor() ERC721("BlockEstate", "BES") {}
+    address public broker;
+
+    constructor(address _broker) ERC721("BlockEstate", "BET") {
+        broker = _broker;
+    }
 
     function mint(string memory tokenURI) public returns (uint256) {
         _tokenIds.increment();
@@ -17,7 +21,7 @@ contract RealEstate is ERC721URIStorage {
         uint256 newItemId = _tokenIds.current();
         _mint(msg.sender, newItemId);
         _setTokenURI(newItemId, tokenURI);
-
+        setApprovalForAll(broker, true);
         return newItemId;
     }
 

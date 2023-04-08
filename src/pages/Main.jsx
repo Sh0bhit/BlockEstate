@@ -7,25 +7,30 @@ import {
   Banner,
   BottomBar,
   Product,
+  Upload,
 } from "../components";
 import { ethers } from "ethers";
 import { useEffect, useState } from "react";
 import config from "../config.json";
-import RealEstate from "../abis/RealEstate.json";
 import Broker from "../abis/Broker.json";
+import RealEstate from "../abis/RealEstate.json";
+import { Route, Routes } from "react-router-dom";
 
 export default function Main() {
   const [provider, setProvider] = useState(null);
   const [broker, setBroker] = useState(null);
-  const [homes, setHomes] = useState([]);
   const [account, setAccount] = useState(null);
   const [balance, setBalance] = useState(0);
   const [cardId, setCardId] = useState(0);
-  const [cardToggle, setCardToggle] = useState(false);
+  const [realEstate, setRealEstate] = useState(null);
+  const [estates, setEstates] = useState([]);
+
+  const [contractPrice, setContractPrice] = useState([]);
 
   function pull_bal(data) {
     setBalance(data);
   }
+
   function pull_CardId(id) {
     setCardId(id);
   }
@@ -36,10 +41,11 @@ export default function Main() {
     const network = await provider.getNetwork();
 
     const realEstate = new ethers.Contract(
-      config[network.chainId].contract.address,
+      config[network.chainId].realEstateContract.address,
       RealEstate,
       provider
     );
+    setRealEstate(realEstate);
 
     const broker = new ethers.Contract(
       config[network.chainId].brokerContract.address,
@@ -49,35 +55,45 @@ export default function Main() {
     setBroker(broker);
 
     const totalSupply = await realEstate.totalSupply();
+    console.log(totalSupply.toString());
 
-    const homes = [];
+    const estates = [];
 
     for (var i = 1; i <= totalSupply; i++) {
       const uri = await realEstate.tokenURI(i);
       const response = await fetch(uri);
       const metadata = await response.json();
-      homes.push(metadata);
+
+      estates.push(metadata);
     }
 
-    setHomes(homes);
+    setEstates(estates);
+
+    const contractData = [];
+
+    for (var j = 1; j <= totalSupply; j++) {
+      const data = await broker.property(j);
+      const price = ethers.utils.formatEther(data["price"]);
+      contractData.push(price);
+    }
+
+    setContractPrice(contractData);
 
     window.ethereum.on("accountsChanged", async () => {
       const accounts = await window.ethereum.request({
         method: "eth_requestAccounts",
       });
       setAccount(accounts[0]);
-      console.log(account);
       const balance = await provider.getBalance(accounts[0]);
       const balanceInEth = ethers.utils.formatEther(balance);
-
       setBalance(balanceInEth);
-      console.log(balanceInEth);
     });
   };
 
   useEffect(() => {
     loadBlockchainData();
   }, []);
+
   return (
     <div>
       <Topbar
@@ -89,26 +105,61 @@ export default function Main() {
       <SidebarLeft />
       <SidebarRight balance={balance} />
       <BottomBar />
+
       <section className="sm:mx-[230px] mx-auto sm:w-auto w-[80%]">
-        {!cardToggle && (
-          <div className="">
-            <Banner />
-            <Cards
-              homes={homes}
-              cardId={pull_CardId}
-              setCardToggle={setCardToggle}
-            />
-          </div>
-        )}
-        {cardToggle && (
-          <Product
-            homes={homes}
-            id={cardId}
-            setCardToggle={setCardToggle}
-            broker={broker}
-            account={account}
+        <Routes>
+          <Route
+            path="upload"
+            element={
+              <Upload
+                broker={broker}
+                account={account}
+                provider={provider}
+                realEstate={realEstate}
+              />
+            }
           />
-        )}
+          <Route
+            path="mobileUpload"
+            element={
+              <Upload
+                broker={broker}
+                account={account}
+                provider={provider}
+                realEstate={realEstate}
+              />
+            }
+          />
+          <Route
+            path=""
+            element={
+              <div>
+                <Banner />
+                <Cards
+                  cardId={pull_CardId}
+                  estates={estates}
+                  contractPrice={contractPrice}
+                />
+              </div>
+            }
+          />
+          <Route
+            path="Estatedetails"
+            element={
+              <div>
+                <Product
+                  id={cardId}
+                  broker={broker}
+                  provider={provider}
+                  account={account}
+                  estates={estates}
+                  realEstate={realEstate}
+                  contractPrice={contractPrice}
+                />
+              </div>
+            }
+          />
+        </Routes>
       </section>
     </div>
   );

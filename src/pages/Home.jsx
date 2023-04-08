@@ -7,7 +7,7 @@ import {
   Need,
   Footer,
 } from "../components";
-import { navHomeLinks } from "../constants/constants";
+import { navHomeLinks } from "../data/constants";
 
 export default function Home() {
   return (

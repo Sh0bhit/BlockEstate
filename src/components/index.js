@@ -16,6 +16,7 @@ import Cards from "./Main/Cards";
 import Banner from "./Main/Banner";
 import BottomBar from "./Main/BottomBar";
 import Product from "./Main/Product";
+import Upload from "./Main/Upload";
 
 export {
   Navbar,
@@ -36,4 +37,5 @@ export {
   Banner,
   BottomBar,
   Product,
+  Upload,
 };

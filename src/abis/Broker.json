@@ -1,142 +1,91 @@
 [
   {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_lender",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_inspector",
-        "type": "address"
-      },
-      {
-        "internalType": "address payable",
-        "name": "_seller",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_nftAddress",
-        "type": "address"
-      }
-    ],
+    "inputs": [],
     "stateMutability": "nonpayable",
     "type": "constructor"
   },
   {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "propertyId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "seller",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "price",
+        "type": "uint256"
+      }
+    ],
+    "name": "propertyListed",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "propertyId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "seller",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "price",
+        "type": "uint256"
+      }
+    ],
+    "name": "propertySold",
+    "type": "event"
+  },
+  {
+    "stateMutability": "payable",
+    "type": "fallback"
+  },
+  {
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "",
+        "name": "_propertyId",
         "type": "uint256"
       },
       {
         "internalType": "address",
-        "name": "",
+        "name": "_propertyContract",
         "type": "address"
       }
     ],
-    "name": "approval",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_nftId",
-        "type": "uint256"
-      }
-    ],
-    "name": "approveSale",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "name": "brokerAmount",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "name": "buyer",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_nftId",
-        "type": "uint256"
-      }
-    ],
-    "name": "cancelSale",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_nftId",
-        "type": "uint256"
-      }
-    ],
-    "name": "depositEarnest",
+    "name": "buyProperties",
     "outputs": [],
     "stateMutability": "payable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_nftId",
-        "type": "uint256"
-      }
-    ],
-    "name": "finalizeSale",
-    "outputs": [],
-    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -156,92 +105,36 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "name": "inspectionPassed",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "inspector",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "name": "isListed",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "lender",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_nftId",
+        "name": "_price",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "_purchasePrice",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_brokerAmount",
+        "name": "_propertyId",
         "type": "uint256"
       },
       {
         "internalType": "address",
-        "name": "_buyer",
+        "name": "_propertyContract",
         "type": "address"
       }
     ],
-    "name": "list",
+    "name": "listProperties",
     "outputs": [],
     "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "listingFees",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -265,25 +158,37 @@
         "type": "uint256"
       }
     ],
-    "name": "purchasePrice",
+    "name": "property",
     "outputs": [
       {
         "internalType": "uint256",
-        "name": "",
+        "name": "propertyId",
         "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "seller",
-    "outputs": [
+      },
       {
         "internalType": "address payable",
-        "name": "",
+        "name": "owner",
         "type": "address"
+      },
+      {
+        "internalType": "address payable",
+        "name": "seller",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "price",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bool",
+        "name": "listed",
+        "type": "bool"
+      },
+      {
+        "internalType": "bool",
+        "name": "reSold",
+        "type": "bool"
       }
     ],
     "stateMutability": "view",
@@ -293,18 +198,23 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "_nftId",
+        "name": "_price",
         "type": "uint256"
       },
       {
-        "internalType": "bool",
-        "name": "_passed",
-        "type": "bool"
+        "internalType": "uint256",
+        "name": "_propertyId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "_propertyContract",
+        "type": "address"
       }
     ],
-    "name": "updateInspectionStatus",
+    "name": "resellProperties",
     "outputs": [],
-    "stateMutability": "nonpayable",
+    "stateMutability": "payable",
     "type": "function"
   },
   {

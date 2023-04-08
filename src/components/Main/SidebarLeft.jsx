@@ -1,5 +1,5 @@
 import React from "react";
-import { sidebarMenu, sidebarProfile } from "../../constants/constants";
+import { sidebarMenu, sidebarProfile } from "../../data/constants";
 
 export default function SidebarLeft() {
   return (

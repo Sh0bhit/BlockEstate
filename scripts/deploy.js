@@ -11,55 +11,18 @@ const tokens = (n) => {
 };
 
 async function main() {
-  let RealEstate, contract, Broker, brokerContract;
-  let buyer, seller, inspector, lender;
-
-  [buyer, seller, inspector, lender] = await ethers.getSigners();
-  RealEstate = await ethers.getContractFactory("RealEstate");
-  contract = await RealEstate.deploy();
-
-  console.log(`Deployed Contract at ${contract.address}`);
-
-  console.log("Minting");
-
-  for (let i = 0; i < 3; i++) {
-    const transaction = await contract
-      .connect(seller)
-      .mint(
-        `https://ipfs.io/ipfs/QmQVcpsjrA6cr1iJjZAodYwmPekYgbnXGo4DFubJiLc2EB/${
-          i + 1
-        }.json`
-      );
-    await transaction.wait();
-  }
+  let Broker, brokerContract, RealEstate, realEstateContract;
 
   Broker = await ethers.getContractFactory("Broker");
-  brokerContract = await Broker.deploy(
-    lender.address,
-    inspector.address,
-    seller.address,
-    contract.address
-  );
+  brokerContract = await Broker.deploy();
 
   await brokerContract.deployed();
+  console.log("Deployed Broker Contract At", brokerContract.address);
 
-  console.log(`Deployed broker Contract at ${brokerContract.address}`);
-
-  for (let i = 0; i < 3; i++) {
-    const transaction = await contract
-      .connect(seller)
-      .approve(brokerContract.address, i + 1);
-    await transaction.wait();
-  }
-
-  for (let i = 0; i < 3; i++) {
-    transaction = await brokerContract
-      .connect(seller)
-      .list(i + 1, tokens(10), tokens(5), buyer.address);
-    await transaction.wait();
-  }
-
-  console.log("Finished");
+  RealEstate = await ethers.getContractFactory("RealEstate");
+  realEstateContract = await RealEstate.deploy(brokerContract.address);
+  await realEstateContract.deployed();
+  console.log(`Deployed Main Contract at ${realEstateContract.address}`);
 }
 
 // We recommend this pattern to be able to use async/await everywhere

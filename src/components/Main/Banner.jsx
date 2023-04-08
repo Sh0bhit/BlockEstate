@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 export default function Banner() {
   return (
@@ -33,9 +34,12 @@ export default function Banner() {
             Unlock your dreams with BlockEstate - Where property meets
             possibility
           </p>
-          <p className="btn-gradient md:w-[150px] w-[100px] lg:text-[15px] md:text-[12px] text-[8px] text-center px-2 py-3 text-primary font-orbitron font-semibold cursor-pointer">
+          <Link
+            className="btn-gradient md:w-[150px] w-[100px] lg:text-[15px] md:text-[12px] text-[8px] text-center px-2 py-3 text-primary font-orbitron font-semibold cursor-pointer"
+            to="upload"
+          >
             Upload
-          </p>
+          </Link>
         </div>
       </div>
     </div>

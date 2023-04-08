@@ -1,5 +1,5 @@
 import React from "react";
-import { features } from "../../constants/constants";
+import { features } from "../../data/constants";
 import { motion } from "framer-motion";
 
 export default function Features() {
