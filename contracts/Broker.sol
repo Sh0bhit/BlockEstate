@@ -10,7 +10,7 @@ interface IERC721 {
 
 contract Broker is ReentrancyGuard {
     address payable private owner;
-    uint256 public listingFees = 0.001 ether;
+    uint256 public listingFees = 0.01 ether;
     address public nftAddress;
 
     uint256 count;

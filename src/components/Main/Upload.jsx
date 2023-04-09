@@ -13,7 +13,7 @@ export default function Upload({ broker, account, provider, realEstate }) {
     id: "",
     tittle: "",
     address: "",
-    price: 0,
+    price: "",
     residence: "",
     bedrooms: "",
     bathrooms: "",
@@ -196,6 +196,7 @@ export default function Upload({ broker, account, provider, realEstate }) {
                   value={estateData[`${upload.name}`]}
                   min={upload.min}
                   step={upload.step}
+                  minLength={upload.minlength}
                   disabled={
                     upload.name === "Wallet" ? (account ? true : false) : false
                   }
@@ -231,7 +232,7 @@ export default function Upload({ broker, account, provider, realEstate }) {
             <img
               src="/images/navicons/x.png"
               alt="close"
-              className="w-5 h-5 absolute right-5 top-5 cursor-pointer"
+              className="w-5 h-5 absolute right-2 top-2 cursor-pointer"
               onClick={() =>
                 setShowModal({
                   visiblity: false,

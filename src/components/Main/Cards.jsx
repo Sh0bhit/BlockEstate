@@ -41,7 +41,7 @@ export default function Cards({ cardId, estates, contractPrice }) {
                         Price
                       </p>
                       <h1 className="xs:text-[13px] text-[8px] xs:font-normal font-bold">
-                        {contractPrice[index]} MATIC
+                        {contractPrice[index]} ETH
                       </h1>
                     </div>
                   </div>

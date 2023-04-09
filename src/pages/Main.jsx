@@ -24,6 +24,7 @@ export default function Main() {
   const [cardId, setCardId] = useState(0);
   const [realEstate, setRealEstate] = useState(null);
   const [estates, setEstates] = useState([]);
+  const [showModal, setShowModal] = useState(true);
 
   const [contractPrice, setContractPrice] = useState([]);
 
@@ -36,9 +37,19 @@ export default function Main() {
   }
 
   const loadBlockchainData = async () => {
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    // const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+    const provider =
+      window.ethereum != null
+        ? new ethers.providers.Web3Provider(window.ethereum)
+        : new ethers.providers.JsonRpcProvider(
+            "https://eth-sepolia.g.alchemy.com/v2/aEEbNSfRHYdNfw6_INth1I-g5ISbXCCe"
+          );
+
     setProvider(provider);
     const network = await provider.getNetwork();
+
+    console.log(provider);
 
     const realEstate = new ethers.Contract(
       config[network.chainId].realEstateContract.address,
@@ -68,6 +79,7 @@ export default function Main() {
     }
 
     setEstates(estates);
+    setShowModal(false);
 
     const contractData = [];
 
@@ -79,15 +91,17 @@ export default function Main() {
 
     setContractPrice(contractData);
 
-    window.ethereum.on("accountsChanged", async () => {
-      const accounts = await window.ethereum.request({
-        method: "eth_requestAccounts",
+    if (window.ethereum) {
+      window.ethereum.on("accountsChanged", async () => {
+        const accounts = await window.ethereum.request({
+          method: "eth_requestAccounts",
+        });
+        setAccount(accounts[0]);
+        const balance = await provider.getBalance(accounts[0]);
+        const balanceInEth = ethers.utils.formatEther(balance);
+        setBalance(balanceInEth);
       });
-      setAccount(accounts[0]);
-      const balance = await provider.getBalance(accounts[0]);
-      const balanceInEth = ethers.utils.formatEther(balance);
-      setBalance(balanceInEth);
-    });
+    }
   };
 
   useEffect(() => {
@@ -160,6 +174,11 @@ export default function Main() {
             }
           />
         </Routes>
+        {showModal && (
+          <div className="glass-gradient p-10 fixed font-orbitron text-primary left-[50%] translate-x-[-50%] top-[50%] z-50">
+            Loading Data From IPFS Plz Wait....
+          </div>
+        )}
       </section>
     </div>
   );

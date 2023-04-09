@@ -126,7 +126,7 @@ export default function Product({
             <h1 className="text-primary font-orbitron font-semibold lg:text-[25px] text-[20px] mt-5">
               Price :-{" "}
               <span className="font-poppins lg:text-[20px] text-[17px] opacity-90">
-                {contractPrice[id]} MATIC
+                {contractPrice[id]} ETH
               </span>
             </h1>
             <p className="font-poppins text-primary text-[13px] w-[80%] mt-3">
