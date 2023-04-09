@@ -21,6 +21,7 @@ export default function Cards({ cardId, estates, contractPrice }) {
                 <img
                   src={data["image"]}
                   alt={`${data.tittle}-img`}
+                  loading="lazy"
                   className="rounded-3xl object-cover"
                 />
                 <div className="card-gradient absolute bottom-0 w-full xs:h-[40%] h-[42%] cursor-pointer">
