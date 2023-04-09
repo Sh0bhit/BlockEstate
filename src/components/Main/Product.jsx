@@ -28,8 +28,8 @@ export default function Product({
 
     const listed = await brokerData["listed"];
     const isSold = await brokerData["reSold"];
-    const signer = await provider.getSigner();
-    const owner = await realEstate.connect(signer).ownerOf(id + 1);
+
+    const owner = await realEstate.connect(provider).ownerOf(id + 1);
 
     setIsListed(listed);
     setIsSold(isSold);

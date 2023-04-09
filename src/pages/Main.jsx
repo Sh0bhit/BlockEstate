@@ -37,8 +37,6 @@ export default function Main() {
   }
 
   const loadBlockchainData = async () => {
-    // const provider = new ethers.providers.Web3Provider(window.ethereum);
-
     const provider =
       window.ethereum != null
         ? new ethers.providers.Web3Provider(window.ethereum)
@@ -46,8 +44,6 @@ export default function Main() {
 
     setProvider(provider);
     const network = await provider.getNetwork();
-
-    console.log(provider);
 
     const realEstate = new ethers.Contract(
       config[network.chainId].realEstateContract.address,
