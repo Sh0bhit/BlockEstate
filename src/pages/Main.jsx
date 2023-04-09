@@ -42,7 +42,7 @@ export default function Main() {
     const provider =
       window.ethereum != null
         ? new ethers.providers.Web3Provider(window.ethereum)
-        : new ethers.providers.JsonRpcProvider(process.env.RPC_URL);
+        : new ethers.providers.JsonRpcProvider(process.env.REACT_APP_RPC_URL);
 
     setProvider(provider);
     const network = await provider.getNetwork();
