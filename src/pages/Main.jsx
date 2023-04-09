@@ -42,9 +42,7 @@ export default function Main() {
     const provider =
       window.ethereum != null
         ? new ethers.providers.Web3Provider(window.ethereum)
-        : new ethers.providers.JsonRpcProvider(
-            "https://eth-sepolia.g.alchemy.com/v2/aEEbNSfRHYdNfw6_INth1I-g5ISbXCCe"
-          );
+        : new ethers.providers.JsonRpcProvider(process.env.RPC_URL);
 
     setProvider(provider);
     const network = await provider.getNetwork();
