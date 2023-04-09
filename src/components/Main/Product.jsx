@@ -145,10 +145,16 @@ export default function Product({
                 {estateOwner.slice(0, 6) + "...." + estateOwner.slice(38, 42)}
               </div>
             )}
+            {!account && (
+              <div className="text-primary font-poppins  my-1">
+                ⚠️ Connect a wallet to make a transaction
+              </div>
+            )}
             {isListed ? (
               <button
                 className="btn-gradient mt-2 w-[100px] text-center px-2 py-2 text-primary font-orbitron font-semibold cursor-pointer"
                 onClick={buy}
+                disabled={!account}
               >
                 Buy
               </button>
@@ -168,6 +174,7 @@ export default function Product({
                 <button
                   className="btn-gradient mt-2 w-[100px] text-center px-2 py-2 text-primary font-orbitron font-semibold cursor-pointer"
                   onClick={resell}
+                  disabled={!account}
                 >
                   Resell
                 </button>

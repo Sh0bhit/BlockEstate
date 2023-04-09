@@ -169,7 +169,7 @@ export default function Main() {
           />
         </Routes>
         {showModal && (
-          <div className="glass-gradient p-10 fixed font-orbitron text-primary left-[50%] translate-x-[-50%] top-[50%] z-50">
+          <div className="glass-gradient p-10 fixed font-orbitron text-primary left-[50%] translate-x-[-50%] top-[50%] translate-y-[-50%] z-50">
             Loading Data From IPFS Plz Wait....
           </div>
         )}

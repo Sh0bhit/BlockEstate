@@ -112,6 +112,11 @@ contract Broker is ReentrancyGuard {
         estate.reSold = true;
     }
 
+    function withdraw() public {
+        require(address(this).balance > 0, "Price must be more than 0");
+        owner.transfer(address(this).balance);
+    }
+
     receive() external payable {}
 
     fallback() external payable {}

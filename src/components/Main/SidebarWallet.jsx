@@ -1,6 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 export default function SidebarWallet({ balance }) {
+  const [gas, setGas] = useState({
+    safe: "",
+    standard: "",
+    fast: "",
+  });
+
+  const [price, setPrice] = useState("");
+
+  async function getGas() {
+    const gasData = await fetch(
+      `https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=${process.env.REACT_APP_ETHERSCAN_API_KEY}`
+    );
+    console.log(process.env.REACT_APP_ETHERSCAN_API_KEY);
+    const safeGas = await gasData.json();
+    setGas({
+      safe: safeGas["result"]["SafeGasPrice"],
+      standard: safeGas["result"]["ProposeGasPrice"],
+      fast: safeGas["result"]["FastGasPrice"],
+    });
+  }
+
+  async function getPrice() {
+    const getData = await fetch(
+      ` https://api.etherscan.io/api?module=stats&action=ethprice&apikey=${process.env.REACT_APP_ETHERSCAN_API_KEY}`
+    );
+    const priceData = await getData.json();
+
+    setPrice(priceData["result"]["ethusd"]);
+  }
+
+  useEffect(() => {
+    getGas();
+    getPrice();
+    const interval = setInterval(() => {
+      getGas();
+      getPrice();
+    }, 10000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="glass-gradient pb-5">
       <h1 className="text-primary font-orbitron font-semibold text-center mt-5">
@@ -12,7 +52,7 @@ export default function SidebarWallet({ balance }) {
         ETH
         <hr className="opacity-70" />
       </h1>
-      <div className="flex justify-around">
+      <div className="flex flex-col justify-around">
         <div className="flex flex-col items-center gap-2">
           <div className="mt-7 flex justify-center">
             <img
@@ -24,16 +64,13 @@ export default function SidebarWallet({ balance }) {
               ETH / Usd
             </h1>
           </div>
-          <h1 className="text-primary font-poppins text-[15px]">$1,697.41</h1>{" "}
-          <img
-            src="/images/sidebar/GraphUp.svg"
-            alt="graph"
-            className="w-[70px] h-15"
-          />
+          <h1 className="text-primary font-poppins text-[17px] font-normal">
+            ${price}
+          </h1>{" "}
         </div>
 
         <div className="flex flex-col items-center gap-2">
-          <div className="mt-7 flex justify-center">
+          <div className="mt-3 flex justify-center">
             <img
               src="/images/sidebar/gas.svg"
               alt="ethereum"
@@ -43,12 +80,17 @@ export default function SidebarWallet({ balance }) {
               Gas price
             </h1>
           </div>
-          <h1 className="text-primary font-poppins text-[15px]">19 gwei</h1>{" "}
-          <img
-            src="/images/sidebar/GraphDown.svg"
-            alt="graph"
-            className="w-[70px] h-15"
-          />
+          <div className="text-[13px] mx-auto text-center">
+            <h1 className="text-primary font-poppins ]">
+              Safe - {gas.safe} gwei
+            </h1>{" "}
+            <h1 className="text-primary font-poppins ">
+              Standard - {gas.standard} gwei
+            </h1>{" "}
+            <h1 className="text-primary font-poppins ">
+              Fast - {gas.fast} gwei
+            </h1>{" "}
+          </div>
         </div>
       </div>
     </div>

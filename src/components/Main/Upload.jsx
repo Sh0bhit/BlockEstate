@@ -9,7 +9,7 @@ export default function Upload({ broker, account, provider, realEstate }) {
   const [fileName, setfileName] = useState("");
   const [previewUrl, setPreviewUrl] = useState("");
   const [isUploaded, setIsUploaded] = useState(false);
-  const [estateData, SetEstateData] = React.useState({
+  const [estateData, SetEstateData] = useState({
     id: "",
     tittle: "",
     address: "",
@@ -112,7 +112,7 @@ export default function Upload({ broker, account, provider, realEstate }) {
           totalSupply + 1,
           realEstate.address,
           {
-            value: tokens(0.001),
+            value: tokens(0.01),
           }
         );
 
@@ -178,11 +178,12 @@ export default function Upload({ broker, account, provider, realEstate }) {
           id="file"
           required
           onChange={(event) => fileChange(event)}
+          disabled={!account}
         />
         <div className="glass-gradient p-10 mt-5">
           {!account && (
             <h1 className="text-primary font-poppins mx-auto text-center mb-5">
-              ⚠️ Connect To Your Wallet
+              You are in Read-Only Mode ⚠️ Connect To Your Wallet to upload
             </h1>
           )}
           <div className="grid md:grid-cols-2 sm:grid-cols-1 ss:grid-cols-2 grid-cols-1 gap-5 ">
@@ -197,9 +198,7 @@ export default function Upload({ broker, account, provider, realEstate }) {
                   min={upload.min}
                   step={upload.step}
                   minLength={upload.minlength}
-                  disabled={
-                    upload.name === "Wallet" ? (account ? true : false) : false
-                  }
+                  disabled={!account}
                   onChange={handleChange}
                   className="block py-3 px-5 bg-input text-primary rounded-md w-full"
                   required
@@ -215,12 +214,14 @@ export default function Upload({ broker, account, provider, realEstate }) {
             type="textarea"
             placeholder="Write a description"
             className="block py-3 px-5 bg-input rounded-md w-full my-5 text-primary"
+            disabled={!account}
             required
           />
 
           <button
             type="submit"
             className="btn-gradient px-[20px] py-[10px] font-poppins text-primary"
+            disabled={!account}
           >
             Submit
           </button>
