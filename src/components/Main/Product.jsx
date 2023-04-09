@@ -111,6 +111,7 @@ export default function Product({
               src={estates[id]["image"]}
               className="w-[300px] md:h-[400px] h-[300px] object-cover rounded-xl mx-auto"
               alt="property"
+              loading="lazy"
             />
             <div className="border-l-2 opacity-50 md:block hidden" />
           </div>
