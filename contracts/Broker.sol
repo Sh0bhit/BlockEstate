@@ -9,7 +9,7 @@ interface IERC721 {
 }
 
 contract Broker is ReentrancyGuard {
-    address payable private owner;
+    address payable public contractOwner;
     uint256 public listingFees = 0.01 ether;
     address public nftAddress;
 
@@ -27,7 +27,7 @@ contract Broker is ReentrancyGuard {
     mapping(uint256 => Land) public property;
 
     constructor() {
-        owner = payable(msg.sender);
+        contractOwner = payable(msg.sender);
     }
 
     event propertyListed(
@@ -56,7 +56,7 @@ contract Broker is ReentrancyGuard {
             address(this),
             _propertyId
         );
-        owner.transfer(listingFees);
+        contractOwner.transfer(listingFees);
         property[_propertyId] = Land(
             _propertyId,
             payable(address(this)),
@@ -86,6 +86,7 @@ contract Broker is ReentrancyGuard {
         );
 
         estate.owner = buyer;
+        estate.seller = buyer;
         estate.listed = false;
 
         emit propertySold(_propertyId, buyer, estate.seller, estate.price);
@@ -106,15 +107,19 @@ contract Broker is ReentrancyGuard {
             address(this),
             _propertyId
         );
+
+        contractOwner.transfer(listingFees);
+
         estate.price = _price;
         estate.owner = payable(address(this));
+        estate.seller = payable(msg.sender);
         estate.listed = true;
         estate.reSold = true;
     }
 
     function withdraw() public {
         require(address(this).balance > 0, "Price must be more than 0");
-        owner.transfer(address(this).balance);
+        contractOwner.transfer(address(this).balance);
     }
 
     receive() external payable {}

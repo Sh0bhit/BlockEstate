@@ -29,16 +29,10 @@ export default function Product({
     const listed = await brokerData["listed"];
     const isSold = await brokerData["reSold"];
 
-    const owner = await realEstate.connect(provider).ownerOf(id + 1);
-
     setIsListed(listed);
     setIsSold(isSold);
 
-    listed
-      ? isSold
-        ? setEstateOwner(owner)
-        : setEstateOwner(brokerData["seller"])
-      : setEstateOwner(brokerData["owner"]);
+    setEstateOwner(brokerData["seller"]);
   }
   async function buy() {
     const signer = await provider.getSigner();
@@ -78,7 +72,7 @@ export default function Product({
       const transaction = await broker
         .connect(signer)
         .resellProperties(tokens(resellPrice), id + 1, broker.address, {
-          value: tokens(0.001),
+          value: tokens(0.01),
         });
 
       await transaction.wait();

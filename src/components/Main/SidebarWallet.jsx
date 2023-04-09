@@ -13,12 +13,12 @@ export default function SidebarWallet({ balance }) {
     const gasData = await fetch(
       `https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=${process.env.REACT_APP_ETHERSCAN_API_KEY}`
     );
-    console.log(process.env.REACT_APP_ETHERSCAN_API_KEY);
-    const safeGas = await gasData.json();
+
+    const rawGas = await gasData.json();
     setGas({
-      safe: safeGas["result"]["SafeGasPrice"],
-      standard: safeGas["result"]["ProposeGasPrice"],
-      fast: safeGas["result"]["FastGasPrice"],
+      safe: rawGas["result"]["SafeGasPrice"],
+      standard: rawGas["result"]["ProposeGasPrice"],
+      fast: rawGas["result"]["FastGasPrice"],
     });
   }
 

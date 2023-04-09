@@ -6,5 +6,13 @@
     "realEstateContract": {
       "address": "0x1C9FEdff56a7336BFAB03A3Ae1e102eB39008e87"
     }
+  },
+  "1337": {
+    "brokerContract": {
+      "address": "0x9F2AC51b5fCf82e51C000886Fb8ADD71B4f21eFF"
+    },
+    "realEstateContract": {
+      "address": "0x97f5d4D05079A408b34cF013abf5AD2d9658953E"
+    }
   }
 }
