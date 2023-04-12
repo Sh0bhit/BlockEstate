@@ -17,6 +17,7 @@ import Banner from "./Main/Banner";
 import BottomBar from "./Main/BottomBar";
 import Product from "./Main/Product";
 import Upload from "./Main/Upload";
+import Loading from "./Loading";
 
 export {
   Navbar,
@@ -38,4 +39,5 @@ export {
   BottomBar,
   Product,
   Upload,
+  Loading,
 };

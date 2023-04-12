@@ -1,6 +1,10 @@
+import React, { Suspense, lazy } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-import { Home, About, Main } from "./pages/";
 import { useEffect } from "react";
+import { Loading } from "./components";
+const Home = lazy(() => import("./pages/Home"));
+const About = lazy(() => import("./pages/About"));
+const Main = lazy(() => import("./pages/Main"));
 
 function App() {
   const location = useLocation();
@@ -10,11 +14,13 @@ function App() {
 
   return (
     <div>
-      <Routes onUpdate={() => window.scrollTo(0, 0)}>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/Main/*" element={<Main />} />
-      </Routes>
+      <Suspense fallback={<Loading />}>
+        <Routes onUpdate={() => window.scrollTo(0, 0)}>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/Main/*" element={<Main />} />
+        </Routes>
+      </Suspense>
     </div>
   );
 }
