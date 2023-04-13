@@ -1,6 +1,6 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import { Home, About, Main } from "./pages/";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { ethers } from "ethers";
 import config from "./config.json";
 import Broker from "./abis/Broker.json";
@@ -47,7 +47,7 @@ function App() {
     setIsDataLoaded(true);
   };
 
-  async function loadEstates() {
+  const loadEstates = useCallback(async () => {
     setIsRendered(false);
     if (isDataLoaded) {
       const totalSupply = await realEstate.totalSupply();
@@ -66,8 +66,6 @@ function App() {
       }
       setIsRendered(true);
 
-      console.log(renderLimit);
-
       setEstates(estates);
 
       const contractData = [];
@@ -80,10 +78,11 @@ function App() {
 
       setContractPrice(contractData);
     }
-  }
+  }, [isDataLoaded, renderLimit, realEstate, broker]);
+
   useEffect(() => {
     loadEstates();
-  }, [isDataLoaded, renderLimit]);
+  }, [loadEstates]);
 
   useEffect(() => {
     loadBlockchainData();
