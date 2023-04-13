@@ -3,17 +3,12 @@ import { Link } from "react-router-dom";
 import Loading from "../Loading";
 
 export default function Cards({
-  cardId,
   estates,
   contractPrice,
   setRenderLimit,
   isRendered,
   fullRendered,
 }) {
-  function fetchCardId(id) {
-    return cardId(id);
-  }
-
   return (
     <div className="flex flex-col mb-[100px]">
       <div className="xs:mt-10 mt-[150px]  sm:flex grid grid-cols-2 xs:gap-8 gap-5 flex-wrap justify-center">
@@ -23,8 +18,7 @@ export default function Cards({
               {data && (
                 <Link
                   className="flex relative sm:w-[200px] xs:w-[200px] w-[150px] sm:h-[300px] xs:h-[250px] h-[200px] sm:mx-0 mx-auto cursor-pointer"
-                  onClick={() => fetchCardId(index)}
-                  to="Estatedetails"
+                  to={`property/${index}`}
                 >
                   <img
                     src={data["image"]}

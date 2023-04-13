@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { ethers } from "ethers";
 
 export default function Product({
-  id,
   broker,
   provider,
   account,
@@ -22,6 +21,8 @@ export default function Product({
   const tokens = (n) => {
     return ethers.utils.parseUnits(n.toString(), "ether");
   };
+
+  const { id } = useParams();
 
   async function getOwner() {
     const brokerData = await broker.property(id + 1);

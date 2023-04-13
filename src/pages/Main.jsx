@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   SidebarLeft,
   SidebarRight,
@@ -24,16 +24,11 @@ export default function Main({
   fullRendered,
 }) {
   const [balance, setBalance] = useState(0);
-  const [cardId, setCardId] = useState(0);
   const [account, setAccount] = useState(null);
   const [loaded, setLoaded] = useState(false);
 
   function pull_bal(data) {
     setBalance(data);
-  }
-
-  function pull_CardId(id) {
-    setCardId(id);
   }
 
   function getWallet() {
@@ -51,9 +46,12 @@ export default function Main({
   }
   getWallet();
 
-  setTimeout(() => {
-    setLoaded(true);
-  }, 3000);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoaded(true);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div>
@@ -99,7 +97,6 @@ export default function Main({
                   <div>
                     <Banner />
                     <Cards
-                      cardId={pull_CardId}
                       estates={estates}
                       contractPrice={contractPrice}
                       setRenderLimit={setRenderLimit}
@@ -110,11 +107,10 @@ export default function Main({
                 }
               />
               <Route
-                path="Estatedetails"
+                path="property/:id"
                 element={
                   <div>
                     <Product
-                      id={cardId}
                       broker={broker}
                       provider={provider}
                       account={account}
