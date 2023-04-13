@@ -1,10 +1,10 @@
-import React, { Suspense, lazy } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-import { useEffect } from "react";
-import { Loading } from "./components";
-const Home = lazy(() => import("./pages/Home"));
-const About = lazy(() => import("./pages/About"));
-const Main = lazy(() => import("./pages/Main"));
+import { Home, About, Main } from "./pages/";
+import { useEffect, useState } from "react";
+import { ethers } from "ethers";
+import config from "./config.json";
+import Broker from "./abis/Broker.json";
+import RealEstate from "./abis/RealEstate.json";
 
 function App() {
   const location = useLocation();
@@ -12,15 +12,104 @@ function App() {
     window.scrollTo(0, 0);
   }, [location]);
 
+  const [provider, setProvider] = useState(null);
+  const [broker, setBroker] = useState(null);
+  const [realEstate, setRealEstate] = useState(null);
+  const [estates, setEstates] = useState([]);
+  const [contractPrice, setContractPrice] = useState([]);
+  const [renderLimit, setRenderLimit] = useState(8);
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
+  const [isRendered, setIsRendered] = useState(false);
+  const [fullRendered, setFullRendered] = useState(false);
+
+  const loadBlockchainData = async () => {
+    const provider =
+      window.ethereum != null
+        ? new ethers.providers.Web3Provider(window.ethereum)
+        : new ethers.providers.WebSocketProvider(process.env.REACT_APP_RPC_URL);
+
+    setProvider(provider);
+    const network = await provider.getNetwork();
+
+    const realEstate = new ethers.Contract(
+      config[network.chainId].realEstateContract.address,
+      RealEstate,
+      provider
+    );
+    setRealEstate(realEstate);
+
+    const broker = new ethers.Contract(
+      config[network.chainId].brokerContract.address,
+      Broker,
+      provider
+    );
+    setBroker(broker);
+    setIsDataLoaded(true);
+  };
+
+  async function loadEstates() {
+    setIsRendered(false);
+    if (isDataLoaded) {
+      const totalSupply = await realEstate.totalSupply();
+
+      const estates = [];
+
+      for (var i = 1; i <= renderLimit; i++) {
+        if (i <= totalSupply) {
+          const uri = await realEstate.tokenURI(i);
+          const response = await fetch(uri);
+          const metadata = await response.json();
+          estates.push(metadata);
+        } else {
+          setFullRendered(true);
+        }
+      }
+      setIsRendered(true);
+
+      console.log(renderLimit);
+
+      setEstates(estates);
+
+      const contractData = [];
+
+      for (var j = 1; j <= renderLimit; j++) {
+        const data = await broker.property(j);
+        const price = ethers.utils.formatEther(data["price"]);
+        contractData.push(price);
+      }
+
+      setContractPrice(contractData);
+    }
+  }
+  useEffect(() => {
+    loadEstates();
+  }, [isDataLoaded, renderLimit]);
+
+  useEffect(() => {
+    loadBlockchainData();
+  }, []);
+
   return (
     <div>
-      <Suspense fallback={<Loading />}>
-        <Routes onUpdate={() => window.scrollTo(0, 0)}>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/Main/*" element={<Main />} />
-        </Routes>
-      </Suspense>
+      <Routes onUpdate={() => window.scrollTo(0, 0)}>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route
+          path="/Main/*"
+          element={
+            <Main
+              provider={provider}
+              broker={broker}
+              realEstate={realEstate}
+              estates={estates}
+              contractPrice={contractPrice}
+              setRenderLimit={setRenderLimit}
+              isRendered={isRendered}
+              fullRendered={fullRendered}
+            />
+          }
+        />
+      </Routes>
     </div>
   );
 }

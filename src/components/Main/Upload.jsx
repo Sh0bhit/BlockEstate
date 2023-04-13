@@ -217,7 +217,6 @@ export default function Upload({ broker, account, provider, realEstate }) {
             disabled={!account}
             required
           />
-
           <button
             type="submit"
             className="btn-gradient px-[20px] py-[10px] font-poppins text-primary"
@@ -228,7 +227,12 @@ export default function Upload({ broker, account, provider, realEstate }) {
         </div>
       </form>
       {showModal.visiblity && (
-        <div className="glass-gradient p-10 fixed font-orbitron text-primary left-[50%] translate-x-[-50%] top-[50%] z-50">
+        <div className="glass-gradient p-5 flex flex-col gap-5 fixed font-orbitron text-primary left-[50%] translate-x-[-50%] top-[50%] z-50">
+          <img
+            src="/images/logo/loading.gif"
+            alt="loading"
+            className="w-20 h-20 mx-auto"
+          />
           {showModal.closeBtn && (
             <img
               src="/images/navicons/x.png"

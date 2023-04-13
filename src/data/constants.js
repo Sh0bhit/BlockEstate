@@ -204,7 +204,7 @@ export const cardData = [
 
 export const UploadForm = [
   {
-    name: "name",
+    name: "tittle",
     type: "text",
     placeholder: "Enter property name",
   },

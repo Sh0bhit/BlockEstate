@@ -56,8 +56,8 @@ export default function Product({
 
         await transaction.wait();
       }
-    } catch {
-      console.log("Transaction Failed");
+    } catch (error) {
+      console.log(error);
     }
 
     setEstateOwner(brokerData["owner"]);
