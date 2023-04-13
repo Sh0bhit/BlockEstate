@@ -3,7 +3,7 @@ import HeroStats from "./HeroStats";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
-export function Hero() {
+export function Hero({ totalSupply, uniqueBrokers }) {
   return (
     <div>
       <section
@@ -58,7 +58,10 @@ export function Hero() {
                 </Link>
               </div>
             </div>
-            <HeroStats />
+            <HeroStats
+              totalSupply={totalSupply}
+              uniqueBrokers={uniqueBrokers}
+            />
           </div>
           <motion.div
             initial={{ opacity: 0, scale: 0.5 }}

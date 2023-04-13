@@ -1,6 +1,6 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import { Home, About, Main } from "./pages/";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import config from "./config.json";
 import Broker from "./abis/Broker.json";
@@ -21,6 +21,8 @@ function App() {
   const [isDataLoaded, setIsDataLoaded] = useState(false);
   const [isRendered, setIsRendered] = useState(false);
   const [fullRendered, setFullRendered] = useState(false);
+  const [totalSupply, setTotalSupply] = useState(0);
+  const [uniqueBrokers, setUniqueBrokers] = useState(0);
 
   const loadBlockchainData = async () => {
     const provider =
@@ -47,12 +49,15 @@ function App() {
     setIsDataLoaded(true);
   };
 
-  const loadEstates = useCallback(async () => {
+  async function loadEstates() {
     setIsRendered(false);
     if (isDataLoaded) {
       const totalSupply = await realEstate.totalSupply();
+      setTotalSupply(totalSupply.toString());
 
       const estates = [];
+
+      const uniqueBrokers = new Set();
 
       for (var i = 1; i <= renderLimit; i++) {
         if (i <= totalSupply) {
@@ -60,13 +65,16 @@ function App() {
           const response = await fetch(uri);
           const metadata = await response.json();
           estates.push(metadata);
+          uniqueBrokers.add(metadata["wallet"]);
         } else {
           setFullRendered(true);
         }
       }
+
       setIsRendered(true);
 
       setEstates(estates);
+      setUniqueBrokers(uniqueBrokers.size);
 
       const contractData = [];
 
@@ -78,11 +86,10 @@ function App() {
 
       setContractPrice(contractData);
     }
-  }, [isDataLoaded, renderLimit, realEstate, broker]);
-
+  }
   useEffect(() => {
     loadEstates();
-  }, [loadEstates]);
+  }, [isDataLoaded, renderLimit]);
 
   useEffect(() => {
     loadBlockchainData();
@@ -91,7 +98,12 @@ function App() {
   return (
     <div>
       <Routes onUpdate={() => window.scrollTo(0, 0)}>
-        <Route path="/" element={<Home />} />
+        <Route
+          path="/"
+          element={
+            <Home totalSupply={totalSupply} uniqueBrokers={uniqueBrokers} />
+          }
+        />
         <Route path="/about" element={<About />} />
         <Route
           path="/Main/*"

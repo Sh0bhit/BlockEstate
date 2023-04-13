@@ -9,11 +9,11 @@ import {
 } from "../components";
 import { navHomeLinks } from "../data/constants";
 
-export default function Home() {
+export default function Home({ totalSupply, uniqueBrokers }) {
   return (
     <div>
       <Navbar link={navHomeLinks} page="home" />
-      <Hero />
+      <Hero totalSupply={totalSupply} uniqueBrokers={uniqueBrokers} />
       <Aim />
       <Features />
       <Need />

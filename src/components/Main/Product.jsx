@@ -145,39 +145,43 @@ export default function Product({
                 ⚠️ Connect a wallet to make a transaction
               </div>
             )}
-            {isListed ? (
-              <button
-                className="btn-gradient mt-2 w-[100px] text-center px-2 py-2 text-primary font-orbitron font-semibold cursor-pointer"
-                onClick={buy}
-                disabled={!account}
-              >
-                Buy
-              </button>
-            ) : estateOwner.toLowerCase() === account ? (
+            {account && (
               <div>
-                <input
-                  type="Number"
-                  className="block py-3 px-5 bg-input text-primary rounded-md w-full my-3"
-                  placeholder="Resell Price"
-                  step="0.01"
-                  onChange={(event) => {
-                    setResellPrice(event.target.value);
-                  }}
-                  value={resellPrice}
-                  required
-                />
-                <button
-                  className="btn-gradient mt-2 w-[100px] text-center px-2 py-2 text-primary font-orbitron font-semibold cursor-pointer"
-                  onClick={resell}
-                  disabled={!account}
-                >
-                  Resell
-                </button>
+                {isListed ? (
+                  <button
+                    className="btn-gradient mt-2 w-[100px] text-center px-2 py-2 text-primary font-orbitron font-semibold cursor-pointer"
+                    onClick={buy}
+                    disabled={!account}
+                  >
+                    Buy
+                  </button>
+                ) : estateOwner.toLowerCase() === account ? (
+                  <div>
+                    <input
+                      type="Number"
+                      className="block py-3 px-5 bg-input text-primary rounded-md w-full my-3"
+                      placeholder="Resell Price"
+                      step="0.01"
+                      onChange={(event) => {
+                        setResellPrice(event.target.value);
+                      }}
+                      value={resellPrice}
+                      required
+                    />
+                    <button
+                      className="btn-gradient mt-2 w-[100px] text-center px-2 py-2 text-primary font-orbitron font-semibold cursor-pointer"
+                      onClick={resell}
+                      disabled={!account}
+                    >
+                      Resell
+                    </button>
+                  </div>
+                ) : (
+                  <button className="btn-gradient mt-2 w-[100px] text-center px-2 py-2 text-primary font-orbitron font-semibold cursor-pointer">
+                    Sold Out
+                  </button>
+                )}
               </div>
-            ) : (
-              <button className="btn-gradient mt-2 w-[100px] text-center px-2 py-2 text-primary font-orbitron font-semibold cursor-pointer">
-                Sold Out
-              </button>
             )}
 
             <div className="border-b-2 mt-2 opacity-40" />
