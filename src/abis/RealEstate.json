@@ -124,7 +124,7 @@
   },
   {
     "inputs": [],
-    "name": "broker",
+    "name": "brokerAddress",
     "outputs": [
       {
         "internalType": "address",

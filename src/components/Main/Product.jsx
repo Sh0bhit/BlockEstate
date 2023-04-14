@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ethers } from "ethers";
+import { motion } from "framer-motion";
 
 export default function Product({
   broker,
@@ -11,12 +12,14 @@ export default function Product({
   contractPrice,
 }) {
   const [estateOwner, setEstateOwner] = useState("");
-
   const [isListed, setIsListed] = useState(true);
-
   const [isSold, setIsSold] = useState(false);
-
   const [resellPrice, setResellPrice] = useState(0);
+  const [showModal, setShowModal] = useState({
+    visiblity: false,
+    closeBtn: false,
+    text: "",
+  });
 
   const tokens = (n) => {
     return ethers.utils.parseUnits(n.toString(), "ether");
@@ -40,6 +43,11 @@ export default function Product({
     const brokerData = await broker.property(id + 1);
 
     try {
+      setShowModal({
+        visiblity: true,
+        text: "Transaction in progress",
+      });
+
       if (isSold) {
         const transaction = await broker
           .connect(signer)
@@ -56,9 +64,17 @@ export default function Product({
           });
 
         await transaction.wait();
+        setShowModal({
+          visiblity: false,
+        });
       }
     } catch (error) {
       console.log(error);
+      setShowModal({
+        visiblity: true,
+        closeBtn: true,
+        text: "Transaction Failed",
+      });
     }
 
     setEstateOwner(brokerData["owner"]);
@@ -102,7 +118,15 @@ export default function Product({
             >
               {"<--"} Back
             </Link>
-            <img
+            <motion.img
+              initial={{ scale: 0 }}
+              whileInView={{ scale: 1 }}
+              transition={{
+                delay: 0.1,
+                duration: 1,
+                type: "spring",
+                stiffness: 40,
+              }}
               src={estates[id]["image"]}
               className="w-[300px] md:h-[400px] h-[300px] object-cover rounded-xl mx-auto"
               alt="property"
@@ -112,39 +136,100 @@ export default function Product({
           </div>
           <div className="flex flex-col ">
             <div className="flex flex-col">
-              <h1 className="text-primary font-orbitron font-semibold lg:text-[35px] md:text-[30px] text-[25px] headTextgradient lg:leading-10 leading-9">
+              <motion.h1
+                className="text-primary font-orbitron font-semibold lg:text-[35px] md:text-[30px] text-[25px] headTextgradient lg:leading-10 leading-9"
+                initial={{ scale: 0.5 }}
+                whileInView={{ scale: 1 }}
+                transition={{
+                  delay: 0.1,
+                  duration: 1,
+                  type: "spring",
+                  stiffness: 50,
+                }}
+              >
                 {estates[id].tittle}
-              </h1>
-              <p className="text-primary font-poppins opacity-70 lg:text-[15px] text-[13px]">
+              </motion.h1>
+              <motion.p
+                className="text-primary font-poppins opacity-70 lg:text-[15px] text-[13px]"
+                initial={{ opacity: 0, translateY: "100%" }}
+                whileInView={{ opacity: 1, translateY: "0%" }}
+                transition={{
+                  delay: 0.3,
+                  duration: 1,
+                  type: "spring",
+                  stiffness: 100,
+                }}
+              >
                 {estates[id].address}
-              </p>
+              </motion.p>
             </div>
-            <h1 className="text-primary font-orbitron font-semibold lg:text-[25px] text-[20px] mt-5">
+            <motion.h1
+              className="text-primary font-orbitron font-semibold lg:text-[25px] text-[20px] mt-5"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{
+                delay: 0.5,
+                duration: 1,
+                type: "spring",
+                stiffness: 70,
+              }}
+            >
               Price :-{" "}
               <span className="font-poppins lg:text-[20px] text-[17px] opacity-90">
                 {contractPrice[id]} ETH
               </span>
-            </h1>
-            <p className="font-poppins text-primary text-[13px] w-[80%] mt-3">
+            </motion.h1>
+            <motion.p
+              className="font-poppins text-primary text-[13px] w-[80%] mt-3"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{
+                delay: 0.8,
+                duration: 1,
+                type: "spring",
+                stiffness: 100,
+              }}
+            >
               {estates[id].description}
-            </p>
+            </motion.p>
             <div className="border-b-2 mt-5 opacity-40" />
-            {estateOwner.toLowerCase() === account ? (
-              <div className="font-orbitron text-primary">
-                owned By :- You {"("}{" "}
-                {estateOwner.slice(0, 6) + "...." + estateOwner.slice(38, 42)}{" "}
-                {")"}
-              </div>
-            ) : (
-              <div className="font-orbitron text-primary">
-                owned By :-{" "}
-                {estateOwner.slice(0, 6) + "...." + estateOwner.slice(38, 42)}
-              </div>
-            )}
+            <motion.div
+              initial={{ opacity: 0, rotateX: 180 }}
+              whileInView={{ opacity: 1, rotateX: 0 }}
+              transition={{
+                delay: 0.5,
+                duration: 1,
+                type: "spring",
+                stiffness: 50,
+              }}
+            >
+              {estateOwner.toLowerCase() === account ? (
+                <div className="font-orbitron text-primary">
+                  owned By :- You {"("}{" "}
+                  {estateOwner.slice(0, 6) + "...." + estateOwner.slice(38, 42)}{" "}
+                  {")"}
+                </div>
+              ) : (
+                <div className="font-orbitron text-primary">
+                  owned By :-{" "}
+                  {estateOwner.slice(0, 6) + "...." + estateOwner.slice(38, 42)}
+                </div>
+              )}
+            </motion.div>
             {!account && (
-              <div className="text-primary font-poppins  my-1">
+              <motion.div
+                className="text-primary font-poppins  my-1"
+                initial={{ opacity: 0, rotateX: 180 }}
+                whileInView={{ opacity: 1, rotateX: 0 }}
+                transition={{
+                  delay: 0.9,
+                  duration: 1,
+                  type: "spring",
+                  stiffness: 50,
+                }}
+              >
                 ⚠️ Connect a wallet to make a transaction
-              </div>
+              </motion.div>
             )}
             {account && (
               <div>
@@ -188,40 +273,98 @@ export default function Product({
             <div className="border-b-2 mt-2 opacity-40" />
             <ul className="flex flex-col text-primary mt-5 text-[15px]">
               <li className="font-orbitron">
-                <div>
+                <motion.div
+                  initial={{ opacity: 0, translateY: "50%" }}
+                  whileInView={{ opacity: 1, translateY: "0%" }}
+                  transition={{
+                    delay: 0.3,
+                    duration: 1,
+                    type: "spring",
+                    stiffness: 50,
+                  }}
+                >
                   Type of residence:-
                   <span className="font-poppins">
                     {" "}
                     {estates[id].residence}{" "}
                   </span>
-                </div>
+                </motion.div>
               </li>
               <li className="font-orbitron">
-                <div>
+                <motion.div
+                  initial={{ opacity: 0, translateY: "50%" }}
+                  whileInView={{ opacity: 1, translateY: "0%" }}
+                  transition={{
+                    delay: 0.4,
+                    duration: 1,
+                    type: "spring",
+                    stiffness: 50,
+                  }}
+                >
                   Bedrooms:-
                   <span className="font-poppins"> {estates[id].bedrooms} </span>
-                </div>
+                </motion.div>
               </li>
               <li className="font-orbitron">
-                <div>
+                <motion.div
+                  initial={{ opacity: 0, translateY: "50%" }}
+                  whileInView={{ opacity: 1, translateY: "0%" }}
+                  transition={{
+                    delay: 0.5,
+                    duration: 1,
+                    type: "spring",
+                    stiffness: 50,
+                  }}
+                >
                   Bathrooms:-
                   <span className="font-poppins">
                     {" "}
                     {estates[id].bathrooms}{" "}
                   </span>
-                </div>
+                </motion.div>
               </li>
               <li className="font-orbitron">
-                <div>
+                <motion.div
+                  initial={{ opacity: 0, translateY: "50%" }}
+                  whileInView={{ opacity: 1, translateY: "0%" }}
+                  transition={{
+                    delay: 0.6,
+                    duration: 1,
+                    type: "spring",
+                    stiffness: 50,
+                  }}
+                >
                   Year Built:-
                   <span className="font-poppins">
                     {" "}
                     {estates[id].yearbuilt}{" "}
                   </span>
-                </div>
+                </motion.div>
               </li>
             </ul>
           </div>
+        </div>
+      )}
+      {showModal.visiblity && (
+        <div className="glass-gradient p-5 flex flex-col gap-5 fixed font-orbitron text-primary left-[50%] translate-x-[-50%] top-[50%] z-50">
+          <img
+            src="/images/logo/loading.gif"
+            alt="loading"
+            className="w-20 h-20 mx-auto"
+          />
+          {showModal.closeBtn && (
+            <img
+              src="/images/navicons/x.png"
+              alt="close"
+              className="w-5 h-5 absolute right-2 top-2 cursor-pointer"
+              onClick={() =>
+                setShowModal({
+                  visiblity: false,
+                })
+              }
+            />
+          )}
+          {showModal.text}
         </div>
       )}
     </div>

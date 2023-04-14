@@ -21,7 +21,10 @@ module.exports = {
     sepolia: {
       url: "https://rpc.sepolia.org/",
       chainId: 11155111,
-      // accounts: [process.env.PRIVATE_KEY],
+      accounts: [process.env.REACT_APP_PRIVATE_KEY],
     },
+  },
+  etherscan: {
+    apiKey: process.env.REACT_APP_ETHERSCAN_API_KEY,
   },
 };
