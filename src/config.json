@@ -9,10 +9,10 @@
   },
   "1337": {
     "brokerContract": {
-      "address": "0x9F2AC51b5fCf82e51C000886Fb8ADD71B4f21eFF"
+      "address": "0xB4536a822322FFa0078a14E8aF8ed06E2014143D"
     },
     "realEstateContract": {
-      "address": "0x97f5d4D05079A408b34cF013abf5AD2d9658953E"
+      "address": "0xa4500B1998695642C3b3A6205C45FB922e8C58d8"
     }
   }
 }

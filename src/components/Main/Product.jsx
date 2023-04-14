@@ -56,6 +56,9 @@ export default function Product({
           });
 
         await transaction.wait();
+        setShowModal({
+          visiblity: false,
+        });
       } else {
         const transaction = await broker
           .connect(signer)

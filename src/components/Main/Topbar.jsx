@@ -23,21 +23,21 @@ function Topbar({ account, setAccount, provider, bal }) {
     <div className="justify-center flex">
       <nav className="navbar w-[95%] flex py-3 justify-between items-center glass-gradient fixed top-0 z-[1]">
         <Link to="/">
-          <div className="flex justify-between items-center mx-5">
+          <div className="flex xs:flex-row flex-col justify-between items-center mx-5">
             <img
               className="w-16 h-16"
               src="/images/logo/BlockEstateLogo.png"
               alt="logo"
               loading="lazy"
             />
-            <h1 className="text-primary font-orbitron font-semibold md:text-[20px] text-[15px]">
+            <h1 className="text-primary font-orbitron font-semibold md:text-[20px] xs:text-[15px] text-[10px]">
               BlockEstate
             </h1>
           </div>
         </Link>
 
         <Searchbar />
-        <div className="sm:flex hidden mx-10">
+        <div className="sm:mx-10 mx-0">
           {account ? (
             <button className="btn-gradient md:w-[150px] w-[100px] lg:text-[15px] md:text-[12px] text-[8px] text-center px-2 py-3 text-primary font-orbitron font-semibold cursor-pointer">
               {account.slice(0, 6) + "...." + account.slice(38, 42)}
