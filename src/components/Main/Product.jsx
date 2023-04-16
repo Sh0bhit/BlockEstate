@@ -28,7 +28,7 @@ export default function Product({
   const { id } = useParams();
 
   async function getOwner() {
-    const brokerData = await broker.property(id + 1);
+    const brokerData = await broker.property(Number(id) + 1);
 
     const listed = await brokerData["listed"];
     const isSold = await brokerData["reSold"];
