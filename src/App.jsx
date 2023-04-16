@@ -62,10 +62,14 @@ function App() {
       for (var i = 1; i <= renderLimit; i++) {
         if (i <= totalSupply) {
           const uri = await realEstate.tokenURI(i);
-          const response = await fetch(uri).catch();
-          const metadata = await response.json();
-          estates.push(metadata);
-          uniqueBrokers.add(metadata["wallet"]);
+          try {
+            const response = await fetch(uri).catch();
+            const metadata = await response.json();
+            estates.push(metadata);
+            uniqueBrokers.add(metadata["wallet"]);
+          } catch {
+            estates.push("");
+          }
         } else {
           setFullRendered(true);
         }
