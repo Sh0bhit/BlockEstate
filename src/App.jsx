@@ -24,7 +24,7 @@ function App() {
   const [totalSupply, setTotalSupply] = useState(0);
   const [uniqueBrokers, setUniqueBrokers] = useState(0);
 
-  const loadBlockchainData = async () => {
+  async function loadBlockchainData() {
     const provider =
       window.ethereum != null
         ? new ethers.providers.Web3Provider(window.ethereum)
@@ -47,7 +47,7 @@ function App() {
     );
     setBroker(broker);
     setIsDataLoaded(true);
-  };
+  }
 
   const loadEstates = useCallback(async () => {
     setIsRendered(false);
@@ -63,7 +63,7 @@ function App() {
         if (i <= totalSupply) {
           const uri = await realEstate.tokenURI(i);
           try {
-            const response = await fetch(uri).catch();
+            const response = await fetch(uri);
             const metadata = await response.json();
             estates.push(metadata);
             uniqueBrokers.add(metadata["wallet"]);
@@ -75,9 +75,12 @@ function App() {
         }
       }
 
+      const randomEstates = estates.sort(() => 0.5 - Math.random());
+
       setIsRendered(true);
 
-      setEstates(estates);
+      setEstates(randomEstates);
+
       setUniqueBrokers(uniqueBrokers.size);
 
       const contractData = [];
