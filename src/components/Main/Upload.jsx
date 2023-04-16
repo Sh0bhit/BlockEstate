@@ -67,7 +67,7 @@ export default function Upload({ broker, account, provider, realEstate }) {
 
     const UploadedImgCID = await storeImages(uploadFile, fileName);
 
-    const uploadedImg = `https://ipfs.io/ipfs/${UploadedImgCID}/${fileName}`;
+    const uploadedImg = `https://w3s.link/ipfs/${UploadedImgCID}/${fileName}`;
 
     estateData.image = uploadedImg;
 
@@ -77,13 +77,13 @@ export default function Upload({ broker, account, provider, realEstate }) {
     });
 
     const files = await storeFiles(estateData, estateData.tittle);
-    console.log(`https://ipfs.io/ipfs/${files}/${estateData.tittle}.json`);
+    console.log(`https://w3s.link/ipfs/${files}/${estateData.tittle}.json`);
 
     setShowModal({
       visiblity: false,
     });
 
-    const metadata = `https://ipfs.io/ipfs/${files}/${estateData.tittle}.json`;
+    const metadata = `https://w3s.link/ipfs/${files}/${estateData.tittle}.json`;
 
     const acc = await provider.getSigner();
 
@@ -143,7 +143,14 @@ export default function Upload({ broker, account, provider, realEstate }) {
       <Link className="text-primary cursor-pointer w-[90%] mx-auto" to="/Main">
         {"<-- Back"}
       </Link>
-      <form className="w-[90%] mx-auto py-10" onSubmit={upload}>
+      <h1 className="text-primary glass-gradient px-1 py-2 w-[80%] mx-auto text-center mt-3 font-poppins">
+        <span className="font-orbitron font-bold headTextgradient text-[17px]">
+          Note:
+        </span>{" "}
+        it may take some time for your uploads to appear in the Marketplace.
+        Please be patient after uploading.
+      </h1>
+      <form className="w-[90%] mx-auto pb-10" onSubmit={upload}>
         <label htmlFor="file" className=" mx-auto cursor-pointer">
           <div className="glass-gradient mx-auto mt-5 flex flex-col md:p-24 p-5 gap-5 cursor-pointer">
             <img

@@ -131,7 +131,7 @@ export default function Product({
                 stiffness: 40,
               }}
               src={estates[id]["image"]}
-              className="w-[300px] md:h-[400px] h-[300px] object-cover rounded-xl mx-auto"
+              className="lg:min-w-[300px] min-w-[200px] md:h-[400px] h-[300px] object-cover rounded-xl mx-auto"
               alt="property"
               loading="lazy"
             />

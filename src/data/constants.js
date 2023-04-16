@@ -132,6 +132,31 @@ export const TimelineData = [
     heading: "Marketplace front end ",
     desc: "Just wrapped up the front-end coding for the marketplace page and it was an awesome experience. I picked up new skills, from designing cards to making the page responsive. Overall, I'm thrilled with what I accomplished and the lessons I learned. Looking forward to applying these skills in future projects!",
   },
+  {
+    date: "March 22nd 2023",
+    heading: "Started writing smart contract",
+    desc: "just started writing smart contracts for the BlockEstate!, I'm really excited to boost my Solidity coding skills and make my college minor project come to life",
+  },
+  {
+    date: "March 24th 2023",
+    heading: "Connected frontend to metamask",
+    desc: "utilized the ethers.js library to establish a connection between frontend application and metamask, also created a short video demonstrating the login process, wallet balance display, and how wallet attributes change when switching between Metamask wallets and uploaded it to twitter and linkdin. Additionally, I conducted thorough testing to ensure smooth integration. Moving forward, I plan to keep enhancing the user experience and adding more features.",
+  },
+  {
+    date: "April 10 2023",
+    heading: "Animated website logo",
+    desc: "Not a big update but just animated website logo to be fixed on loading screens used after effects to animate it had fun doing so learned alot about after effects also",
+  },
+  {
+    date: "April 13 2023",
+    heading: "Testing on localhost",
+    desc: "I tested the smart contracts and overall functionality of the project on a local server using hardhat nodes and ganache. This comprehensive testing ensured that everything was working as intended.",
+  },
+  {
+    date: "April 15 2023",
+    heading: "Deployed contracts",
+    desc: "Finally after testing on localhost and testing deployed smart contracts to sepolia ETH testnet using hardhat really very excited that my smart contracts are now alive well in testnet but still xd now i hope i dont have to change them and reupload xd",
+  },
 ];
 
 export const sidebarMenu = [
