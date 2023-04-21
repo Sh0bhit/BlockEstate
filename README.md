@@ -23,9 +23,13 @@ To get started with BlockEstate, follow these steps:
 2. Install the dependencies: <br>cd blockestate<br>
 npm install
 
-3. Start the local development server: npm run start
+3. Start the local blockchain: npx hardhat node
 
-4. Open your browser and go to http://localhost:3000.
+4. Deploy the smart contracts: npx hardhat run scripts/deploy.js --network localhost
+
+5. Start the local development server: npm run start
+
+6. Open your browser and go to http://localhost:3000.
 
 <h2>Usage 💻</h2>
 To use BlockEstate, follow these steps:
